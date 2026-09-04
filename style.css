@@ -396,6 +396,7 @@ nav.main-nav a:hover::after{ width:100%; }
 @media (max-width:700px){ .showcase-grid-dual{ grid-template-columns:1fr; } }
 
 .showcase-model{ position:relative; aspect-ratio:4/3; background:#EDEAE0; overflow:hidden; }
+.showcase-model-tall{ aspect-ratio:3/4; }
 .showcase-model model-viewer{ --poster-color: transparent; }
 .showcase-cap{ position:absolute; left:0; right:0; bottom:0; padding:9px 12px; font-family:var(--mono); font-size:11px; color:var(--ink-60); background:rgba(241,239,230,.85); backdrop-filter:blur(3px); border-top:1px solid var(--line); }
 .showcase-model .showcase-cap{ position:absolute; }
