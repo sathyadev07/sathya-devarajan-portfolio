@@ -204,7 +204,6 @@ nav.main-nav a:hover{ color:var(--ink); }
 nav.main-nav a:hover::after{ width:100%; }
 
 .header-cta{ display:flex; align-items:center; gap:16px; }
-.header-cta .btn{ padding:10px 16px; }
 .nav-toggle{ display:none; width:30px; height:22px; position:relative; z-index:2; }
 .nav-toggle span{ position:absolute; left:0; right:0; height:1px; background:var(--ink); transition:transform .3s ease, opacity .3s ease; }
 .nav-toggle span:nth-child(1){ top:0; }
@@ -224,7 +223,6 @@ nav.main-nav a:hover::after{ width:100%; }
   nav.main-nav.open{ transform:translateY(0); }
   nav.main-nav a{ font-size:24px; font-family:var(--display); text-transform:none; letter-spacing:0; color:var(--ink); }
   .nav-toggle{ display:block; }
-  .header-cta .btn span.btn-label-full{ display:none; }
 }
 
 /* ==================== HERO ==================== */
