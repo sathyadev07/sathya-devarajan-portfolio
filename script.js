@@ -229,7 +229,6 @@
       { src:'assets/images/audio-eq-schematic.png', title:'LTspice Schematic', desc:'Treble, mid, bass, and master control stages, recombined into a summed output.' }
     ],
     bike: [
-      { src:'assets/images/bike-01-frame-assembly.jpg', title:'Top-Level Frame Assembly', desc:'Parametric frame model in Siemens NX.' },
       { src:'assets/images/bike-02-fea-prepped.jpg', title:'Meshed for Analysis', desc:'Frame prepared for meshing in Ansys.' },
       { src:'assets/images/bike-03-fea-stress.jpg', title:'Von Mises Stress Results', desc:'637 MPa max under static load — safety factor ≥ 2.0 maintained.' }
     ],
