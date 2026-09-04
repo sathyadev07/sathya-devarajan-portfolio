@@ -197,7 +197,7 @@
                 </div>
                 <div class="showcase-model frame">
                   <model-viewer
-                    src="assets/models/Drivetrain27_Rear_Asy.gltf"
+                    src="assets/models/Drivetrain27_Asy.gltf"
                     alt="3D model of the full rear drivetrain assembly"
                     camera-controls
                     auto-rotate
@@ -260,6 +260,22 @@
           <div class="proj-tools">Siemens NX · Ansys FEA</div>
         </div>
         <div class="proj-col-media">
+          <div class="showcase-model frame">
+            <model-viewer
+              src="assets/models/ebike-top-level-assembly.gltf"
+              alt="3D model of the custom electric bike top-level assembly"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="1200"
+              rotation-per-second="18deg"
+              interaction-prompt="none"
+              shadow-intensity="0.7"
+              exposure="1"
+              environment-image="neutral"
+              style="width:100%; height:100%;">
+            </model-viewer>
+            <div class="showcase-cap">Top-level frame assembly — interactive 3D model (drag to rotate)</div>
+          </div>
           <div class="proj-img-grid">
             <div class="proj-img frame" data-project="bike" data-idx="0"><img src="assets/images/bike-01-frame-assembly.jpg" alt="Top-level electric bike frame assembly"></div>
             <div class="proj-img frame" data-project="bike" data-idx="1"><img src="assets/images/bike-02-fea-prepped.jpg" alt="Frame prepared for FEA meshing in Ansys"></div>
@@ -304,6 +320,23 @@
           </div>
         </div>
 
+        <div class="showcase-model frame topo-model">
+          <model-viewer
+            src="assets/models/BabaWoodSurface.gltf"
+            alt="3D model of the carved wood relief surface"
+            camera-controls
+            auto-rotate
+            auto-rotate-delay="1200"
+            rotation-per-second="18deg"
+            interaction-prompt="none"
+            shadow-intensity="0.7"
+            exposure="1"
+            environment-image="neutral"
+            style="width:100%; height:100%;">
+          </model-viewer>
+          <div class="showcase-cap">Carved relief surface — interactive 3D model (drag to rotate)</div>
+        </div>
+
         <div class="story-strip frame" data-reveal>
           <div class="story-step" data-project="topo" data-idx="0">
             <div class="thumb"><img src="assets/images/topo-01-source.jpg" alt="Source portrait photograph used to generate the heightmap"></div>
@@ -334,11 +367,35 @@
             <div class="cap"><div class="st-num">07</div><div class="st-title">Final Piece</div></div>
           </div>
         </div>
+
+        <div class="video-strip frame" data-reveal>
+          <div class="video-item" data-video-idx="0">
+            <div class="vid-wrap">
+              <video class="video-preview" muted loop playsinline preload="metadata" src="assets/video/topo-video-1-preview.mp4"></video>
+              <span class="play-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            </div>
+            <div class="cap"><div class="st-num">01</div><div class="st-title">Machining Pass — Video 1</div></div>
+          </div>
+          <div class="video-item" data-video-idx="1">
+            <div class="vid-wrap">
+              <video class="video-preview" muted loop playsinline preload="metadata" src="assets/video/topo-video-2-preview.mp4"></video>
+              <span class="play-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            </div>
+            <div class="cap"><div class="st-num">02</div><div class="st-title">Machining Pass — Video 2</div></div>
+          </div>
+          <div class="video-item" data-video-idx="2">
+            <div class="vid-wrap">
+              <video class="video-preview" muted loop playsinline preload="metadata" src="assets/video/topo-video-3-preview.mp4"></video>
+              <span class="play-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            </div>
+            <div class="cap"><div class="st-num">03</div><div class="st-title">Machining Pass — Video 3</div></div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Project: Smog Tower Simulation -->
-    <div class="proj-section" data-reveal>
+    <!-- Project: Smog Tower Simulation — temporarily hidden, pending new media -->
+    <div class="proj-section" data-reveal hidden>
       <div class="wrap proj-row proj-row-text">
         <div class="proj-col-head">
           <div class="proj-index">04</div>
@@ -487,6 +544,24 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M9 18l6-6-6-6"/></svg>
   </button>
   <div class="lb-count" id="lb-count"></div>
+</div>
+
+<!-- ============ VIDEO LIGHTBOX ============ -->
+<div id="video-lightbox">
+  <button class="lb-close" id="vlb-close" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <button class="lb-nav lb-prev" id="vlb-prev" aria-label="Previous">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <div class="lb-stage">
+    <video id="vlb-video" controls playsinline></video>
+    <div class="lb-caption"><b id="vlb-title"></b></div>
+  </div>
+  <button class="lb-nav lb-next" id="vlb-next" aria-label="Next">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+  <div class="lb-count" id="vlb-count"></div>
 </div>
 
 <script src="script.js"></script>

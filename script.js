@@ -295,6 +295,78 @@
     if (e.key === 'ArrowLeft') prevImg();
   });
 
+  /* ============ TOPOGRAPHY VIDEO PREVIEWS (play on scroll into view) ============ */
+  const videoPreviews = document.querySelectorAll('.video-preview');
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const vid = entry.target;
+      if (entry.isIntersecting){
+        vid.play().catch(() => {});
+      } else {
+        vid.pause();
+        vid.currentTime = 0;
+      }
+    });
+  }, { threshold:0.4 });
+  videoPreviews.forEach(vid => videoObserver.observe(vid));
+
+  /* ============ VIDEO LIGHTBOX (full machining clips) ============ */
+  const topoVideos = [
+    { src:'assets/video/topo-video-1.mp4', title:'Machining Pass — Video 1' },
+    { src:'assets/video/topo-video-2.mp4', title:'Machining Pass — Video 2' },
+    { src:'assets/video/topo-video-3.mp4', title:'Machining Pass — Video 3' }
+  ];
+
+  const videoLightbox = document.getElementById('video-lightbox');
+  const vlbVideo = document.getElementById('vlb-video');
+  const vlbTitle = document.getElementById('vlb-title');
+  const vlbCount = document.getElementById('vlb-count');
+  const vlbClose = document.getElementById('vlb-close');
+  const vlbPrev = document.getElementById('vlb-prev');
+  const vlbNext = document.getElementById('vlb-next');
+
+  let currentVideoIndex = 0;
+
+  function openVideoLightbox(startIndex){
+    currentVideoIndex = startIndex || 0;
+    renderVideoLightbox();
+    videoLightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function renderVideoLightbox(){
+    const item = topoVideos[currentVideoIndex];
+    if (!item) return;
+    vlbVideo.src = item.src;
+    vlbVideo.load();
+    vlbVideo.play().catch(() => {});
+    vlbTitle.textContent = item.title;
+    vlbCount.textContent = `${String(currentVideoIndex + 1).padStart(2,'0')} / ${String(topoVideos.length).padStart(2,'0')}`;
+  }
+  function closeVideoLightbox(){
+    videoLightbox.classList.remove('open');
+    vlbVideo.pause();
+    vlbVideo.removeAttribute('src');
+    vlbVideo.load();
+    document.body.style.overflow = '';
+  }
+  function nextVideo(){ currentVideoIndex = (currentVideoIndex + 1) % topoVideos.length; renderVideoLightbox(); }
+  function prevVideo(){ currentVideoIndex = (currentVideoIndex - 1 + topoVideos.length) % topoVideos.length; renderVideoLightbox(); }
+
+  document.querySelectorAll('.video-item[data-video-idx]').forEach(el => {
+    el.addEventListener('click', () => openVideoLightbox(parseInt(el.getAttribute('data-video-idx'), 10) || 0));
+  });
+
+  if (vlbClose) vlbClose.addEventListener('click', closeVideoLightbox);
+  if (vlbNext) vlbNext.addEventListener('click', nextVideo);
+  if (vlbPrev) vlbPrev.addEventListener('click', prevVideo);
+  if (videoLightbox) videoLightbox.addEventListener('click', (e) => { if (e.target === videoLightbox) closeVideoLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (!videoLightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeVideoLightbox();
+    if (e.key === 'ArrowRight') nextVideo();
+    if (e.key === 'ArrowLeft') prevVideo();
+  });
+
   /* ============ SMOOTH ANCHOR OFFSET (account for fixed header) ============ */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', (e) => {

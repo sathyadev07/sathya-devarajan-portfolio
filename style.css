@@ -431,6 +431,7 @@ nav.main-nav a:hover::after{ width:100%; }
 .proj-tools{ font-family:var(--mono); font-size:11px; color:var(--ink-40); text-transform:uppercase; letter-spacing:.05em; margin-top:20px; }
 
 .proj-col-media{ min-width:0; }
+.proj-col-media .showcase-model{ margin-bottom:16px; }
 .proj-img-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .proj-img-grid .proj-img:first-child{ grid-column:1 / -1; }
 .proj-img{ position:relative; overflow:hidden; cursor:pointer; aspect-ratio:16/10; background:var(--bg-alt); }
@@ -450,6 +451,27 @@ nav.main-nav a:hover::after{ width:100%; }
 .story-step .cap{ padding:12px 14px; }
 .story-step .cap .st-num{ font-family:var(--mono); font-size:10px; color:var(--accent); }
 .story-step .cap .st-title{ font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.03em; margin-top:4px; }
+
+.topo-model{ margin-bottom:20px; }
+
+/* ==================== VIDEO STRIP (topography machining clips) ==================== */
+.video-strip{ display:grid; grid-template-columns:repeat(3,1fr); border-left:1px solid var(--line); border-top:1px solid var(--line); margin-top:20px; }
+@media (max-width:700px){ .video-strip{ grid-template-columns:1fr; } }
+.video-item{ border-right:1px solid var(--line); border-bottom:1px solid var(--line); position:relative; cursor:pointer; }
+.video-item .vid-wrap{ position:relative; aspect-ratio:16/10; overflow:hidden; background:#000; }
+.video-item video{ width:100%; height:100%; object-fit:cover; display:block; }
+.video-item .play-badge{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none;
+}
+.video-item .play-badge svg{
+  width:46px; height:46px; padding:14px; border-radius:50%;
+  background:rgba(20,20,18,.55); color:#fff;
+  transition:background .25s ease, transform .25s ease;
+}
+.video-item:hover .play-badge svg{ background:var(--accent); transform:scale(1.08); }
+.video-item .cap{ padding:12px 14px; }
+.video-item .cap .st-num{ font-family:var(--mono); font-size:10px; color:var(--accent); }
+.video-item .cap .st-title{ font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.03em; margin-top:4px; }
 
 /* ==================== SKILLS ==================== */
 .skills-grid{ display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--line); }
@@ -492,26 +514,27 @@ footer{ background:var(--dark); color:var(--dark-ink); padding:70px 0 26px; }
 .footer-top a:hover{ color:var(--accent); }
 .footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:24px; flex-wrap:wrap; gap:12px; font-family:var(--mono); font-size:11px; color:rgba(237,233,220,.4); }
 
-/* ==================== LIGHTBOX ==================== */
-#lightbox{
+/* ==================== LIGHTBOX (shared: image + video) ==================== */
+#lightbox, #video-lightbox{
   position:fixed; inset:0; z-index:800; background:rgba(19,18,15,.96);
   display:flex; align-items:center; justify-content:center;
   opacity:0; pointer-events:none; transition:opacity .35s ease;
   padding:60px var(--gutter) 100px;
 }
-#lightbox.open{ opacity:1; pointer-events:auto; }
-#lightbox .lb-stage{ position:relative; max-width:1100px; width:100%; text-align:center; }
+#lightbox.open, #video-lightbox.open{ opacity:1; pointer-events:auto; }
+#lightbox .lb-stage, #video-lightbox .lb-stage{ position:relative; max-width:1100px; width:100%; text-align:center; }
 #lightbox img{ max-height:70vh; margin:0 auto; object-fit:contain; box-shadow:0 30px 60px rgba(0,0,0,.4); }
-#lightbox .lb-caption{ font-family:var(--mono); font-size:13px; color:rgba(237,233,220,.85); margin-top:20px; }
-#lightbox .lb-caption b{ color:var(--accent); }
-#lightbox .lb-close{ position:absolute; top:24px; right:var(--gutter); width:40px; height:40px; border:1px solid rgba(237,233,220,.3); display:flex; align-items:center; justify-content:center; color:var(--dark-ink); transition:background .2s ease,border-color .2s ease; }
-#lightbox .lb-close:hover{ background:var(--accent); border-color:var(--accent); }
-#lightbox .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border:1px solid rgba(237,233,220,.3); display:flex; align-items:center; justify-content:center; color:var(--dark-ink); transition:background .2s ease,border-color .2s ease; }
-#lightbox .lb-nav:hover{ background:var(--accent); border-color:var(--accent); }
-#lightbox .lb-prev{ left:var(--gutter); }
-#lightbox .lb-next{ right:var(--gutter); }
-#lightbox .lb-count{ position:absolute; bottom:24px; left:50%; transform:translateX(-50%); font-family:var(--mono); font-size:11px; color:rgba(237,233,220,.5); }
-@media (max-width:700px){ #lightbox{ padding:80px 16px 90px; } #lightbox .lb-nav{ width:36px; height:36px; } }
+#video-lightbox video{ max-height:70vh; width:100%; margin:0 auto; box-shadow:0 30px 60px rgba(0,0,0,.4); background:#000; }
+#lightbox .lb-caption, #video-lightbox .lb-caption{ font-family:var(--mono); font-size:13px; color:rgba(237,233,220,.85); margin-top:20px; }
+#lightbox .lb-caption b, #video-lightbox .lb-caption b{ color:var(--accent); }
+#lightbox .lb-close, #video-lightbox .lb-close{ position:absolute; top:24px; right:var(--gutter); width:40px; height:40px; border:1px solid rgba(237,233,220,.3); display:flex; align-items:center; justify-content:center; color:var(--dark-ink); transition:background .2s ease,border-color .2s ease; }
+#lightbox .lb-close:hover, #video-lightbox .lb-close:hover{ background:var(--accent); border-color:var(--accent); }
+#lightbox .lb-nav, #video-lightbox .lb-nav{ position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border:1px solid rgba(237,233,220,.3); display:flex; align-items:center; justify-content:center; color:var(--dark-ink); transition:background .2s ease,border-color .2s ease; }
+#lightbox .lb-nav:hover, #video-lightbox .lb-nav:hover{ background:var(--accent); border-color:var(--accent); }
+#lightbox .lb-prev, #video-lightbox .lb-prev{ left:var(--gutter); }
+#lightbox .lb-next, #video-lightbox .lb-next{ right:var(--gutter); }
+#lightbox .lb-count, #video-lightbox .lb-count{ position:absolute; bottom:24px; left:50%; transform:translateX(-50%); font-family:var(--mono); font-size:11px; color:rgba(237,233,220,.5); }
+@media (max-width:700px){ #lightbox, #video-lightbox{ padding:80px 16px 90px; } #lightbox .lb-nav, #video-lightbox .lb-nav{ width:36px; height:36px; } }
 
 /* ==================== MISC ==================== */
 .text-center{ text-align:center; }
