@@ -347,6 +347,11 @@ nav.main-nav a:hover::after{ width:100%; }
 }
 .section-desc{ max-width:380px; color:var(--ink-60); font-size:15px; line-height:1.6; }
 
+/* ==================== ABOUT ==================== */
+.about-body{ max-width:900px; border-left:1px solid var(--line); padding-left:clamp(20px,3vw,40px); }
+.about-body p{ color:var(--ink-80); font-size:clamp(16px,1.5vw,19px); line-height:1.75; }
+.about-body p + p{ margin-top:20px; }
+
 /* ==================== EXPERIENCE ==================== */
 .exp-card{ border:1px solid var(--line); margin-bottom:-1px; }
 .exp-head{

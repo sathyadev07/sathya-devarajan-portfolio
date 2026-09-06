@@ -43,6 +43,7 @@
       SATHYA DEVARAJAN
     </a>
     <nav class="main-nav" id="main-nav">
+      <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
@@ -113,6 +114,19 @@
     </div>
   </div>
 
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <h2 class="section-title">About</h2>
+      </div>
+      <div class="about-body" data-reveal>
+        <p>I got into mechanical engineering to work on problems that genuinely help people and the planet, and that same motivation is what's pulling me to eventually build something of my own that does the same, responsibly.</p>
+        <p>In the meantime, I try to learn as broadly as I can — powertrains, thermal and fluid systems, propulsion, robotics and mechatronics, embedded electronics, materials science — because the best engineering usually sits at the overlap of a few fields, not inside just one.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ EXPERIENCE ============ -->
   <section class="section" id="experience">
     <div class="wrap">
@@ -133,16 +147,15 @@
         <div class="exp-body">
           <div class="exp-body-inner">
             <ul>
-              <li>Designed and revised 14 production tooling solutions for CH-53K, Black Hawk, and search-and-rescue rotorcraft components, tailoring designs and tolerancing to each part's production method — 3-/5-axis CNC, manual machining, or additive manufacturing; 3 designs have since been produced and put into use.</li>
-              <li>Created bills of materials (BOMs) and managed tooling designs through PLM software throughout the design and revision process.</li>
-              <li>Modified 2 of the 14 tool designs to correct functional issues and reduce manufacturing lead times.</li>
-              <li>Co-designed a hybrid-propulsion system for a VTOL aircraft in a cross-functional intern competition, integrating engine, motor, battery, and gearbox subsystems within weight and thermal limits.</li>
-              <li>Presented final design work to engineering leadership and program organizers.</li>
+              <li>Designed and revised 14 production tooling fixtures and jigs (drill jigs, assembly fixtures/locators, masking fixtures) in CATIA V5 for CH-53K, Black Hawk, and search-and-rescue rotorcraft programs, applying ASME Y14.5 GD&amp;T across CNC milling, manual machining, and additive manufacturing processes; 3 designs released directly to the shop floor.</li>
+              <li>Diagnosed and redesigned 3 in-service production tools to correct functional issues and reduce fabrication and procurement lead time.</li>
+              <li>Managed multi-level BOMs and drove engineering change orders (ECOs) through SAP ERP and Dassault Systèmes 3DEXPERIENCE/Matrix PLM, coordinating with manufacturing engineers and machinists to keep tooling data synchronized.</li>
+              <li>Co-designed a hybrid-electric VTOL propulsion architecture in a cross-functional intern design challenge, integrating ICE, electric motor, battery pack, and reduction gearbox while optimizing packaging and thermal dissipation; presented findings to engineering leadership.</li>
             </ul>
             <div class="exp-stats">
               <div class="s"><div class="n">14</div><div class="l">Tooling solutions designed &amp; revised</div></div>
               <div class="s"><div class="n">3</div><div class="l">Designs in production use</div></div>
-              <div class="s"><div class="n">2</div><div class="l">Reworked for functional fixes</div></div>
+              <div class="s"><div class="n">3</div><div class="l">Reworked for functional fixes</div></div>
               <div class="s"><div class="n">4</div><div class="l">Production methods spanned — 3/5-axis, manual, additive</div></div>
             </div>
           </div>
@@ -287,11 +300,28 @@
       </div>
     </div>
 
+    <!-- Project: Autonomous Supply Robot -->
+    <div class="proj-section" data-reveal>
+      <div class="wrap proj-row proj-row-text">
+        <div class="proj-col-head">
+          <div class="proj-index">02</div>
+          <h3>Autonomous Supply Robot</h3>
+          <div class="proj-date">March 2026 — April 2026</div>
+          <ul class="proj-desc">
+            <li>Navigated a solid-wall maze using ultrasonic and IMU sensing to turn precisely, while fusing IMU and infrared readings to detect and avoid heat and magnetic hazards.</li>
+            <li>Designed a secure gripping mechanism to hold and deliver cargo to the correct destination.</li>
+            <li>Logged the robot's traversed path via IMU dead-reckoning and recorded hazard and delivery-location coordinates in a matrix.</li>
+          </ul>
+          <div class="proj-tools">Raspberry Pi Build HAT · LEGO Technic · Python · Ultrasonic/IMU/Infrared Sensors</div>
+        </div>
+      </div>
+    </div>
+
     <!-- Project: Analog Audio Equalizer -->
     <div class="proj-section" data-reveal>
       <div class="wrap proj-row">
         <div class="proj-col-head">
-          <div class="proj-index">02</div>
+          <div class="proj-index">03</div>
           <h3>Analog Audio Equalizer</h3>
           <div class="proj-date">April 2026</div>
           <ul class="proj-desc">
@@ -311,7 +341,7 @@
       <div class="wrap">
         <div class="proj-row proj-row-top">
           <div class="proj-col-head">
-            <div class="proj-index">03</div>
+            <div class="proj-index">04</div>
             <h3>Complex Surface Topography</h3>
             <div class="proj-date">December 2025 — January 2026</div>
             <ul class="proj-desc">
@@ -398,15 +428,49 @@
       </div>
     </div>
 
-    <!-- Project: Smog Tower Simulation — temporarily hidden, pending new media -->
-    <div class="proj-section" data-reveal hidden>
+    <!-- Project: Mars Rover -->
+    <div class="proj-section" data-reveal>
       <div class="wrap proj-row proj-row-text">
         <div class="proj-col-head">
-          <div class="proj-index">04</div>
-          <h3>Smog Tower Simulation</h3>
+          <div class="proj-index">05</div>
+          <h3>Mars Rover</h3>
+          <div class="proj-date">October 2025 — December 2025</div>
+          <ul class="proj-desc">
+            <li>Built a compact rover drivetrain with a custom worm-gear cargo system, using a Raspberry Pi Build HAT to control LEGO Technic motors, to transport 500 g loads up 35° inclines.</li>
+            <li>Wrote a Python closed-loop control system using real-time IMU feedback to adjust motor PWM for accurate line-tracking over rough terrain.</li>
+          </ul>
+          <div class="proj-tools">Raspberry Pi Build HAT · LEGO Technic · Python · IMU</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project: Ethanol Production Process Optimization -->
+    <div class="proj-section" data-reveal>
+      <div class="wrap proj-row proj-row-text">
+        <div class="proj-col-head">
+          <div class="proj-index">06</div>
+          <h3>Ethanol Production Process Optimization</h3>
+          <div class="proj-date">October 2025</div>
+          <ul class="proj-desc">
+            <li>Built a low-fidelity Python simulation modeling an ethanol production plant, parameterizing conversion machinery, piping, and valve components.</li>
+            <li>Numerically optimized plant configuration for cost and energy density by exhaustively evaluating component combinations.</li>
+          </ul>
+          <div class="proj-tools">Python</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project: Smog Tower Feasibility Study -->
+    <div class="proj-section" data-reveal>
+      <div class="wrap proj-row proj-row-text">
+        <div class="proj-col-head">
+          <div class="proj-index">07</div>
+          <h3>Smog Tower Feasibility Study</h3>
           <div class="proj-date">March 2025</div>
           <ul class="proj-desc">
-            <li>Developed a Python simulation and conducted a financial study on the costs and benefits of smog tower air filtration systems.</li>
+            <li>Researched Studio Roosegaarde's Smog Free Tower concept and evaluated its feasibility for large-scale deployment to reduce PM2.5/PM10 air pollution in Hong Kong within realistic budget and practicality constraints.</li>
+            <li>Built a low-fidelity Python simulation modeling individual particle motion to determine each tower's effective cleaning radius — the area where PM2.5/PM10 concentrations could be held at or below global health standards.</li>
+            <li>Combined the simulation results with a scale-deployment feasibility analysis to conclude that city-wide deployment wasn't practical — a data-driven recommendation rather than a subjective call.</li>
           </ul>
           <div class="proj-tools">Python</div>
         </div>
@@ -504,6 +568,7 @@
       <div>
         <h4>Sitemap</h4>
         <ul>
+          <li><a href="#about">About</a></li>
           <li><a href="#experience">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#skills">Skills</a></li>
