@@ -3,7 +3,7 @@
    Design system: cream/blueprint technical aesthetic, orange accent
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=chillax@400&display=swap');
 
 :root{
   --bg: #F1EFE6;
@@ -24,9 +24,9 @@
   --dark-line: rgba(237,233,220,.16);
   --dark-line-strong: rgba(237,233,220,.3);
 
-  --display: 'Space Grotesk', 'Arial Narrow', sans-serif;
-  --body: 'Inter', -apple-system, sans-serif;
-  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  --display: 'Chillax', 'Arial Narrow', sans-serif;
+  --body: 'Chillax', -apple-system, sans-serif;
+  --mono: 'Chillax', 'Courier New', monospace;
 
   --container: 1360px;
   --gutter: clamp(20px, 4vw, 56px);
