@@ -385,4 +385,141 @@
     });
   });
 
+  /* ============ RESUME VIEWER ============ */
+  const RESUME_SRC = 'assets/Resume.pdf';
+  const resumeModal = document.getElementById('resume-modal');
+  const openResumeBtn = document.getElementById('open-resume');
+
+  if (resumeModal && openResumeBtn){
+    const stage = document.getElementById('rm-stage');
+    const fallback = document.getElementById('rm-fallback');
+    const closeBtn = document.getElementById('rm-close');
+    let lastFocus = null;
+    let frameBuilt = false;
+
+    // Inline PDF rendering is unreliable on most mobile browsers; open a tab instead.
+    const inlinePdfUnsupported = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    function buildFrame(){
+      if (frameBuilt) return;
+      frameBuilt = true;
+      const iframe = document.createElement('iframe');
+      iframe.className = 'rm-frame';
+      iframe.title = 'Resume PDF';
+      iframe.src = RESUME_SRC;
+      iframe.addEventListener('error', () => { fallback.hidden = false; });
+      stage.insertBefore(iframe, fallback);
+    }
+
+    function focusables(){
+      return resumeModal.querySelectorAll('a[href], button:not([disabled])');
+    }
+
+    function openResume(){
+      if (inlinePdfUnsupported){
+        window.open(RESUME_SRC, '_blank', 'noopener');
+        return;
+      }
+      lastFocus = document.activeElement;
+      resumeModal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      buildFrame();
+      // force a reflow so the transition still runs, without depending on rAF
+      // (a throttled rAF would otherwise leave the panel invisible and unfocused)
+      void resumeModal.offsetWidth;
+      resumeModal.classList.add('open');
+      closeBtn.focus();
+    }
+
+    function closeResume(){
+      resumeModal.classList.remove('open');
+      resumeModal.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    openResumeBtn.addEventListener('click', openResume);
+    resumeModal.querySelectorAll('[data-rm-close]').forEach(el => {
+      el.addEventListener('click', closeResume);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (resumeModal.hidden) return;
+      if (e.key === 'Escape'){ closeResume(); return; }
+      if (e.key !== 'Tab') return;
+      // trap focus inside the dialog
+      const items = focusables();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first){
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last){
+        e.preventDefault(); first.focus();
+      }
+    });
+  }
+
+  /* ============ PRINT / EXPORT PORTFOLIO ============ */
+  const printBtn = document.getElementById('print-portfolio');
+
+  /* model-viewer draws to a WebGL canvas that prints blank, so each one is
+     swapped for a still of its current camera view while the print runs. */
+  const printShots = [];
+
+  function freezeViewersForPrint(){
+    document.querySelectorAll('model-viewer').forEach(mv => {
+      // An unloaded viewer captures as a blank buffer, so hide it rather than
+      // printing an empty box where the model should be.
+      if (!mv.loaded){
+        mv.classList.add('print-hidden');
+        printShots.push({ mv, img: null });
+        return;
+      }
+      let url = '';
+      try { url = mv.toDataURL('image/png'); } catch (err) { url = ''; }
+      const rect = mv.getBoundingClientRect();
+      const looksReal = url.startsWith('data:image/png') && url.length > 5000 && rect.width > 200;
+      if (!looksReal){
+        mv.classList.add('print-hidden');
+        printShots.push({ mv, img: null });
+        return;
+      }
+      const img = document.createElement('img');
+      img.src = url;
+      img.alt = mv.getAttribute('alt') || '3D model view';
+      img.className = 'print-canvas-shot';
+      mv.parentNode.insertBefore(img, mv);
+      mv.classList.add('print-hidden');
+      printShots.push({ mv, img });
+    });
+  }
+
+  function restoreViewersAfterPrint(){
+    while (printShots.length){
+      const { mv, img } = printShots.pop();
+      if (img) img.remove();
+      mv.classList.remove('print-hidden');
+    }
+  }
+
+  if (printBtn){
+    printBtn.addEventListener('click', () => {
+      // open every experience card so nothing prints collapsed
+      document.querySelectorAll('.exp-card').forEach(c => {
+        c.classList.add('open');
+        const body = c.querySelector('.exp-body');
+        const inner = c.querySelector('.exp-body-inner');
+        if (body && inner) body.style.maxHeight = inner.scrollHeight + 40 + 'px';
+      });
+      document.querySelectorAll('[data-reveal], [data-reveal-group]').forEach(el => {
+        el.classList.add('is-visible');
+      });
+      freezeViewersForPrint();
+      setTimeout(() => window.print(), 120);
+    });
+  }
+
+  window.addEventListener('afterprint', restoreViewersAfterPrint);
+
 })();

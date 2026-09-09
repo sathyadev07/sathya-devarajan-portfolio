@@ -50,10 +50,19 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-cta">
+      <button class="hdr-btn hdr-btn-solid" id="open-resume" type="button"><span class="lbl-full">View Resume</span><span class="lbl-short">Resume</span></button>
+      <button class="hdr-btn" id="print-portfolio" type="button"><span class="lbl-full">Download Portfolio PDF</span><span class="lbl-short">PDF</span></button>
       <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
+
+<!-- ============ PRINT-ONLY HEADER ============ -->
+<div class="print-header" aria-hidden="true">
+  <h1>Sathya Devarajan</h1>
+  <p>Mechanical Engineer · Purdue University — B.S. Mechanical Engineering, Expected May 2028</p>
+  <p>630-888-0715 · sathyadevarajan07@gmail.com · linkedin.com/in/sathya-devarajan · West Lafayette, IN</p>
+</div>
 
 <main id="top">
 
@@ -142,21 +151,22 @@
             <div class="role">Tooling Design Engineer Intern</div>
             <div class="co">Lockheed Martin Sikorsky — Stratford, CT</div>
           </div>
-          <div class="exp-meta">JUN 2026 — PRESENT<span class="plus">+</span></div>
+          <div class="exp-meta">JUN 2026 — AUG 2026<span class="plus">+</span></div>
         </div>
         <div class="exp-body">
           <div class="exp-body-inner">
             <ul>
-              <li>Designed and revised 14 production tooling fixtures and jigs (drill jigs, assembly fixtures/locators, masking fixtures) in CATIA V5 for CH-53K, Black Hawk, and search-and-rescue rotorcraft programs, applying ASME Y14.5 GD&amp;T across CNC milling, manual machining, and additive manufacturing processes; 3 designs released directly to the shop floor.</li>
-              <li>Diagnosed and redesigned 3 in-service production tools to correct functional issues and reduce fabrication and procurement lead time.</li>
-              <li>Managed multi-level BOMs and drove engineering change orders (ECOs) through SAP ERP and Dassault Systèmes 3DEXPERIENCE/Matrix PLM, coordinating with manufacturing engineers and machinists to keep tooling data synchronized.</li>
-              <li>Co-designed a hybrid-electric VTOL propulsion architecture in a cross-functional intern design challenge, integrating ICE, electric motor, battery pack, and reduction gearbox while optimizing packaging and thermal dissipation; presented findings to engineering leadership.</li>
+              <li>Designed and revised 14 production tooling fixtures and jigs (drill jigs, assembly locators, masking fixtures) in CATIA V5 for CH-53K, Black Hawk, and search-and-rescue rotorcraft, 3 of which are now in use on the shop floor.</li>
+              <li>Toleranced 12 tools to ASME Y14.5 GD&amp;T, matching every callout to the process that would actually make the part (CNC milling, manual machining, or additive) rather than to a single default standard.</li>
+              <li>Traced constraint and leakage failures in 3 released production tools back to root cause and redesigned each one, which cut procurement lead time and dropped a secondary machining setup from the build.</li>
+              <li>Maintained multi-level BOMs for all 14 tools and routed engineering change orders through SAP ERP and 3DEXPERIENCE PLM, so manufacturing engineers and machinists worked from current tooling data across releases.</li>
+              <li>Co-designed the hybrid-electric powertrain for the dual-propeller Nomad VTOL, packaging an ICE, motor generator, battery pack, and a per-propeller motor and planetary gearbox inside thermal limits; presented to leadership.</li>
             </ul>
             <div class="exp-stats">
               <div class="s"><div class="n">14</div><div class="l">Tooling solutions designed &amp; revised</div></div>
               <div class="s"><div class="n">3</div><div class="l">Designs in production use</div></div>
-              <div class="s"><div class="n">3</div><div class="l">Reworked for functional fixes</div></div>
-              <div class="s"><div class="n">4</div><div class="l">Production methods spanned — 3/5-axis, manual, additive</div></div>
+              <div class="s"><div class="n">12</div><div class="l">Tools toleranced to ASME Y14.5</div></div>
+              <div class="s"><div class="n">3</div><div class="l">Released tools traced to root cause &amp; redesigned</div></div>
             </div>
           </div>
         </div>
@@ -173,16 +183,15 @@
         <div class="exp-body">
           <div class="exp-body-inner">
             <ul>
-              <li>Designed the rear upright and planet carrier for a new outrunner drivetrain architecture in Siemens NX.</li>
-              <li>Drafted detailed technical drawings of rear uprights in Siemens NX for internal bearing and seal bores, ensuring precise tolerancing to improve the accuracy of manual boring operations.</li>
-              <li>Optimized wheel upright manufacturing by modeling toolpaths for 5-axis CNC milling, reducing machining time by 50% compared to previous 3-axis operations while maintaining strict geometric tolerances per GD&amp;T standards.</li>
-              <li>Developed and fabricated an upright fixture plate for 3-axis CNC operation.</li>
-              <li>Performed static structural FEA on the rear upright and hub assembly to validate the design under load.</li>
+              <li>Designed the rear upright and planet carrier for the 2027 outrunner drivetrain in NX, cutting weight 32%.</li>
+              <li>Ran static structural FEA on the rear upright and hub group, then reworked stiffener and fillet geometry against the stress peaks and 2 mm deflections it exposed, and pulled dead weight out of near-zero-stress areas.</li>
+              <li>Drafted the rear upright to sub-0.003 in. bearing and seal bore tolerances, called out for a manual boring finish.</li>
+              <li>Cut wheel-upright machining time 50% by reworking the toolpaths from 3-axis to 5-axis CNC milling, then built the fixture plate that locates and holds the upright through the remaining 3-axis production runs.</li>
             </ul>
             <div class="exp-stats">
               <div class="s"><div class="n"><span>50</span><span style="color:var(--accent)">%</span></div><div class="l">Faster 5-axis machining time</div></div>
-              <div class="s"><div class="n">1</div><div class="l">Unibody upright + planet carrier designed</div></div>
-              <div class="s"><div class="n" style="font-size:20px;">GD&amp;T</div><div class="l">Toleranced bearing &amp; seal bores</div></div>
+              <div class="s"><div class="n"><span>32</span><span style="color:var(--accent)">%</span></div><div class="l">Weight cut from rear upright</div></div>
+              <div class="s"><div class="n" style="font-size:20px;">0.003"</div><div class="l">Bearing &amp; seal bore tolerance</div></div>
               <div class="s"><div class="n" style="font-size:20px;">CUSTOM</div><div class="l">3-axis fixture plate fabricated</div></div>
             </div>
 
@@ -268,8 +277,9 @@
           <h3>Custom Electric Bike Design</h3>
           <div class="proj-date">October 2025 — Present</div>
           <ul class="proj-desc">
-            <li>Parametric frame model in Siemens NX, enabling rapid modification of critical dimensions such as wheelbase and steerer angle to accelerate design iteration.</li>
-            <li>Structural integrity validated via Ansys FEA, iterating frame dimensions to minimize mass while maintaining a minimum safety factor of 2.0 under static load cases.</li>
+            <li>Built a fully parametric frame assembly in Siemens NX keyed to off-the-shelf tubing dimensions, so wheelbase, head angle, chainstay angle, and dropout geometry all update from a single set of driving inputs.</li>
+            <li>Ran Ansys FEA on each candidate frame, swapping stock tube diameters and wall thicknesses through the parametric model to find the lightest combination that holds a 2.0 minimum safety factor under static load.</li>
+            <li>Ran cost-versus-performance trade studies on motors, sprockets, and tubing alongside the FEA, converging on the cheapest catalog set that still meets the target safety factor and ride geometry, 9% under the first build cost.</li>
           </ul>
           <div class="proj-tools">Siemens NX · Ansys FEA</div>
         </div>
@@ -308,9 +318,9 @@
           <h3>Autonomous Supply Robot</h3>
           <div class="proj-date">March 2026 — April 2026</div>
           <ul class="proj-desc">
-            <li>Navigated a solid-wall maze using ultrasonic and IMU sensing to turn precisely, while fusing IMU and infrared readings to detect and avoid heat and magnetic hazards.</li>
-            <li>Designed a secure gripping mechanism to hold and deliver cargo to the correct destination.</li>
-            <li>Logged the robot's traversed path via IMU dead-reckoning and recorded hazard and delivery-location coordinates in a matrix.</li>
+            <li>Navigated a walled maze on ultrasonic and IMU sensing, adding infrared to dodge heat and magnetic hazards.</li>
+            <li>Designed a gripping mechanism that holds cargo in transit and releases it at the target destination.</li>
+            <li>Logged the path traveled by IMU dead-reckoning, recording hazard and delivery coordinates into a matrix.</li>
           </ul>
           <div class="proj-tools">Raspberry Pi Build HAT · LEGO Technic · Python · Ultrasonic/IMU/Infrared Sensors</div>
         </div>
@@ -345,8 +355,9 @@
             <h3>Complex Surface Topography</h3>
             <div class="proj-date">December 2025 — January 2026</div>
             <ul class="proj-desc">
-              <li>Built 3D mesh geometry from 2D heightmaps in Fusion 360 to model complex organic topology while ensuring manufacturability.</li>
-              <li>Accelerated CAM toolpaths, cutting machining time by 60% while retaining high-level detail without manual post-processing.</li>
+              <li>Produced a 2D grayscale gradient heightmap from a source portrait photo.</li>
+              <li>Built 3D mesh geometry from the heightmap in Fusion 360, keeping the organic topology machinable.</li>
+              <li>Cut machining time 60% by reworking CAM toolpaths, holding surface detail with almost no hand rework.</li>
             </ul>
             <div class="proj-tools">Fusion 360 · CAM · CNC Router</div>
           </div>
@@ -436,8 +447,8 @@
           <h3>Mars Rover</h3>
           <div class="proj-date">October 2025 — December 2025</div>
           <ul class="proj-desc">
-            <li>Built a compact rover drivetrain with a custom worm-gear cargo system, using a Raspberry Pi Build HAT to control LEGO Technic motors, to transport 500 g loads up 35° inclines.</li>
-            <li>Wrote a Python closed-loop control system using real-time IMU feedback to adjust motor PWM for accurate line-tracking over rough terrain.</li>
+            <li>Built a compact drivetrain with a custom worm-gear cargo system to carry 500 g loads up 35° inclines.</li>
+            <li>Wrote a Python control loop that trims motor PWM from live IMU feedback to hold the line over rough terrain.</li>
           </ul>
           <div class="proj-tools">Raspberry Pi Build HAT · LEGO Technic · Python · IMU</div>
         </div>
@@ -453,8 +464,8 @@
             <h3>Ethanol Production Process Optimization</h3>
             <div class="proj-date">October 2025</div>
             <ul class="proj-desc">
-              <li>Built a low-fidelity Python simulation modeling an ethanol production plant, parameterizing conversion machinery, piping, and valve components.</li>
-              <li>Numerically optimized plant configuration for cost and energy density by exhaustively evaluating component combinations.</li>
+              <li>Built a low-fidelity Python model of an ethanol plant, parameterized by machinery, piping, and valve specs.</li>
+              <li>Swept every valid component combination to find the plant configuration with the lowest cost per unit energy.</li>
             </ul>
             <div class="proj-tools">Python</div>
           </div>
@@ -504,30 +515,40 @@
 
       <div class="skills-grid frame" data-reveal>
         <div class="skill-col">
-          <h3>CAD/CAM/Metrology</h3>
+          <h3>CAD/CAM/PLM</h3>
           <ul>
-            <li>CATIA</li>
+            <li>CATIA V5</li>
             <li>Siemens NX</li>
             <li>Fusion 360</li>
-            <li>DS 3DExperience CAD &amp; PLM</li>
-            <li>Siemens Teamcenter</li>
-            <li>GD&amp;T</li>
-          </ul>
-        </div>
-        <div class="skill-col">
-          <h3>Analysis</h3>
-          <ul>
-            <li>Ansys FEA</li>
-            <li>Dive CFD</li>
+            <li>3DEXPERIENCE</li>
+            <li>Teamcenter</li>
+            <li>SAP ERP</li>
           </ul>
         </div>
         <div class="skill-col">
           <h3>Manufacturing</h3>
           <ul>
-            <li>5-Axis CNC</li>
-            <li>3-Axis CNC</li>
+            <li>3- &amp; 5-Axis CNC Machining</li>
             <li>Manual Machining</li>
+            <li>Additive Manufacturing</li>
+            <li>Fixture Design</li>
             <li>Soldering</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h3>Tolerancing &amp; Analysis</h3>
+          <ul>
+            <li>GD&amp;T (ASME Y14.5)</li>
+            <li>Ansys FEA</li>
+            <li>Dive CFD</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h3>Modeling</h3>
+          <ul>
+            <li>Python trade studies</li>
+            <li>Combinatorial optimization</li>
+            <li>Cost &amp; energy modeling</li>
           </ul>
         </div>
         <div class="skill-col">
@@ -648,6 +669,31 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M9 18l6-6-6-6"/></svg>
   </button>
   <div class="lb-count" id="vlb-count"></div>
+</div>
+
+<!-- ============ RESUME VIEWER ============ -->
+<div id="resume-modal" hidden role="dialog" aria-modal="true" aria-labelledby="resume-modal-title">
+  <div class="rm-backdrop" data-rm-close></div>
+  <div class="rm-panel" role="document">
+    <div class="rm-bar">
+      <h2 id="resume-modal-title">Resume</h2>
+      <div class="rm-actions">
+        <a class="btn btn-solid" id="rm-download" href="assets/Resume.pdf" download="Sathya-Devarajan-Resume.pdf">Download PDF
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12M6 12l6 6 6-6M4 20h16"/></svg>
+        </a>
+        <button class="rm-close" id="rm-close" type="button" aria-label="Close resume viewer" data-rm-close>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="rm-stage" id="rm-stage">
+      <!-- iframe injected on first open so the PDF is not fetched on page load -->
+      <p class="rm-fallback" id="rm-fallback" hidden>
+        This browser can't display the PDF inline.
+        <a href="assets/Resume.pdf" target="_blank" rel="noopener">Open the resume in a new tab</a>.
+      </p>
+    </div>
+  </div>
 </div>
 
 <script src="script.js"></script>
