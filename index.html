@@ -228,9 +228,29 @@
                 </div>
               </div>
 
-              <div class="showcase-img frame showcase-img-wide" data-project="upright" data-idx="4">
-                <img src="assets/images/upright-fea.jpg" alt="Static structural FEA on the rear upright and hub assembly">
-                <div class="showcase-cap">Static FEA — rear upright / hub assembly</div>
+              <div class="showcase-grid showcase-grid-dual">
+                <div class="showcase-img frame" data-project="upright" data-idx="4">
+                  <img src="assets/images/upright-fea.jpg" alt="Static structural FEA on the rear upright and hub assembly" loading="lazy">
+                  <div class="showcase-cap">Static FEA results — rear upright / hub assembly</div>
+                </div>
+                <div class="showcase-model frame">
+                  <model-viewer
+                    src="assets/models/DT27_Rear_Upright_Assembly.glb"
+                    alt="3D model of the rear upright and hub assembly geometry"
+                    loading="lazy"
+                    camera-controls
+                    auto-rotate
+                    auto-rotate-delay="1200"
+                    rotation-per-second="18deg"
+                    interaction-prompt="none"
+                    shadow-intensity="0.7"
+                    exposure="1"
+                    environment-image="neutral"
+                    camera-orbit="35deg 40deg 105%"
+                    style="width:100%; height:100%;">
+                  </model-viewer>
+                  <div class="showcase-cap">Rear upright / hub assembly — geometry only, interactive 3D model (drag to rotate)</div>
+                </div>
               </div>
             </div>
 
