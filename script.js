@@ -228,6 +228,12 @@
     audioeq: [
       { src:'assets/images/audio-eq-schematic.png', title:'LTspice Schematic', desc:'Treble, mid, bass, and master control stages, recombined into a summed output.' }
     ],
+    ethanol: [
+      { src:'assets/images/ethanol-01-stages.png', title:'Process Stage Model', desc:'Mass flow of ethanol, sugar, fiber, water, and waste through each of the four stages.' },
+      { src:'assets/images/ethanol-02-kinetic.png', title:'Kinetic Function', desc:'Conversion rates modeled across the plant.' },
+      { src:'assets/images/ethanol-03-matrices.png', title:'Component Matrices', desc:'Cost and performance parameters for pipe, pump, valve, and conversion machinery.' },
+      { src:'assets/images/ethanol-04-sweep.png', title:'Configuration Sweep', desc:'Exhaustive evaluation of component combinations against cost and energy density.' }
+    ],
     bike: [
       { src:'assets/images/bike-02-fea-prepped.jpg', title:'Meshed for Analysis', desc:'Frame prepared for meshing in Ansys.' },
       { src:'assets/images/bike-03-fea-stress.jpg', title:'Von Mises Stress Results', desc:'637 MPa max under static load — safety factor ≥ 2.0 maintained.' }
