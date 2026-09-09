@@ -392,23 +392,37 @@
 
   if (resumeModal && openResumeBtn){
     const stage = document.getElementById('rm-stage');
-    const fallback = document.getElementById('rm-fallback');
     const closeBtn = document.getElementById('rm-close');
     let lastFocus = null;
-    let frameBuilt = false;
+    let stageBuilt = false;
+    let lockedScrollY = 0;
 
-    // Inline PDF rendering is unreliable on most mobile browsers; open a tab instead.
-    const inlinePdfUnsupported = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    // iOS Safari will not scroll a PDF inside an iframe at any height, and most
+    // Android browsers refuse to render one inline at all.
+    const inlinePdfUnsupported =
+      /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+      (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1) || // iPadOS
+      /Android/i.test(navigator.userAgent);
 
-    function buildFrame(){
-      if (frameBuilt) return;
-      frameBuilt = true;
+    function buildStage(){
+      if (stageBuilt) return;
+      stageBuilt = true;
+
+      if (inlinePdfUnsupported){
+        const cta = document.createElement('div');
+        cta.className = 'rm-cta';
+        cta.innerHTML =
+          '<p>This browser can’t scroll a PDF inline.</p>' +
+          '<a class="btn btn-solid" href="' + RESUME_SRC + '" target="_blank" rel="noopener">Open Resume</a>';
+        stage.appendChild(cta);
+        return;
+      }
+
       const iframe = document.createElement('iframe');
       iframe.className = 'rm-frame';
       iframe.title = 'Resume PDF';
       iframe.src = RESUME_SRC;
-      iframe.addEventListener('error', () => { fallback.hidden = false; });
-      stage.insertBefore(iframe, fallback);
+      stage.appendChild(iframe);
     }
 
     function focusables(){
@@ -416,14 +430,16 @@
     }
 
     function openResume(){
-      if (inlinePdfUnsupported){
-        window.open(RESUME_SRC, '_blank', 'noopener');
-        return;
-      }
       lastFocus = document.activeElement;
       resumeModal.hidden = false;
-      document.body.style.overflow = 'hidden';
-      buildFrame();
+      // Lock the page by pinning it rather than with overflow:hidden, which can
+      // swallow scroll events aimed at the PDF iframe.
+      lockedScrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = -lockedScrollY + 'px';
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      buildStage();
       // force a reflow so the transition still runs, without depending on rAF
       // (a throttled rAF would otherwise leave the panel invisible and unfocused)
       void resumeModal.offsetWidth;
@@ -434,7 +450,12 @@
     function closeResume(){
       resumeModal.classList.remove('open');
       resumeModal.hidden = true;
-      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      // instant, not smooth — the page must land exactly where it was pinned
+      window.scrollTo({ top: lockedScrollY, left: 0, behavior: 'instant' });
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
 
@@ -467,24 +488,43 @@
      swapped for a still of its current camera view while the print runs. */
   const printShots = [];
 
-  function freezeViewersForPrint(){
-    document.querySelectorAll('model-viewer').forEach(mv => {
-      // An unloaded viewer captures as a blank buffer, so hide it rather than
-      // printing an empty box where the model should be.
-      if (!mv.loaded){
-        mv.classList.add('print-hidden');
-        printShots.push({ mv, img: null });
-        return;
-      }
+  /* The viewers are lazy: until one has been scrolled to, its WebGL buffer is
+     empty and any capture comes back blank. So force each to load and wait for
+     it before capturing anything. */
+  function loadViewer(mv, timeout){
+    if (mv.loaded) return Promise.resolve(true);
+    mv.setAttribute('loading', 'eager');
+    if (typeof mv.dismissPoster === 'function') mv.dismissPoster();
+    return new Promise(resolve => {
+      let done = false;
+      const finish = ok => { if (!done){ done = true; resolve(ok); } };
+      mv.addEventListener('load', () => finish(true), { once: true });
+      mv.addEventListener('error', () => finish(false), { once: true });
+      setTimeout(() => finish(!!mv.loaded), timeout);
+    });
+  }
+
+  async function freezeViewersForPrint(){
+    const viewers = [...document.querySelectorAll('model-viewer')];
+    await Promise.all(viewers.map(mv => loadViewer(mv, 8000)));
+    // one more frame so the freshly loaded models are actually drawn
+    await new Promise(r => setTimeout(r, 350));
+
+    const pending = [];
+
+    viewers.forEach(mv => {
       let url = '';
       try { url = mv.toDataURL('image/png'); } catch (err) { url = ''; }
       const rect = mv.getBoundingClientRect();
       const looksReal = url.startsWith('data:image/png') && url.length > 5000 && rect.width > 200;
+
       if (!looksReal){
+        // never print an empty box in place of a model
         mv.classList.add('print-hidden');
         printShots.push({ mv, img: null });
         return;
       }
+
       const img = document.createElement('img');
       img.src = url;
       img.alt = mv.getAttribute('alt') || '3D model view';
@@ -492,7 +532,13 @@
       mv.parentNode.insertBefore(img, mv);
       mv.classList.add('print-hidden');
       printShots.push({ mv, img });
+      pending.push(img);
     });
+
+    // Decode every capture before printing — beforeprint is too late for this.
+    await Promise.all(pending.map(img =>
+      (img.decode ? img.decode() : Promise.resolve()).catch(() => {})
+    ));
   }
 
   function restoreViewersAfterPrint(){
@@ -504,7 +550,14 @@
   }
 
   if (printBtn){
-    printBtn.addEventListener('click', () => {
+    let printing = false;
+    printBtn.addEventListener('click', async () => {
+      if (printing) return;
+      printing = true;
+      const label = printBtn.innerHTML;
+      printBtn.disabled = true;
+      printBtn.textContent = 'Preparing…';
+
       // open every experience card so nothing prints collapsed
       document.querySelectorAll('.exp-card').forEach(c => {
         c.classList.add('open');
@@ -515,8 +568,17 @@
       document.querySelectorAll('[data-reveal], [data-reveal-group]').forEach(el => {
         el.classList.add('is-visible');
       });
-      freezeViewersForPrint();
-      setTimeout(() => window.print(), 120);
+
+      try {
+        await freezeViewersForPrint();
+      } catch (err) {
+        console.warn('[print] capture failed', err);
+      }
+
+      printBtn.innerHTML = label;
+      printBtn.disabled = false;
+      printing = false;
+      window.print();
     });
   }
 

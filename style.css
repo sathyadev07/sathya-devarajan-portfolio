@@ -605,77 +605,202 @@ footer{ background:var(--dark); color:var(--dark-ink); padding:70px 0 26px; }
   transition:background .2s ease, color .2s ease, border-color .2s ease;
 }
 .rm-close:hover{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
-.rm-stage{ flex:1; min-height:0; position:relative; background:var(--bg-alt); }
-.rm-frame{ width:100%; height:100%; border:0; display:block; }
-.rm-fallback{
-  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-  gap:6px; padding:24px; text-align:center; font-size:14px; color:var(--ink-60);
+/* Explicit height: the iframe's height:100% only resolves if this box has a
+   definite height of its own. This is the modal's only scroll container. */
+.rm-stage{ flex:1 1 auto; height:100%; min-height:0; background:var(--bg-alt); overflow:auto; }
+.rm-frame{ width:100%; height:100%; min-height:70vh; border:0; display:block; }
+
+/* Shown instead of the iframe where inline PDF rendering is unreliable.
+   It is a normal flow child, never an overlay on the document. */
+.rm-cta{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:14px; height:100%; padding:32px; text-align:center;
+  font-size:14px; line-height:1.6; color:var(--ink-60);
 }
-.rm-fallback a{ color:var(--accent); text-decoration:underline; }
 @media (max-width:700px){
   .rm-panel{ width:100vw; height:100dvh; max-height:none; border:0; }
+  .rm-bar{ flex-wrap:wrap; gap:10px; }
+  .rm-bar h2{ width:100%; }
+  .rm-actions{ width:100%; justify-content:space-between; }
+  .rm-actions .btn{ padding:9px 11px; font-size:10px; }
 }
 
-/* ==================== PRINT ==================== */
-.print-header{ display:none; }
+/* ==========================================================================
+   PRINT — the portfolio rendered as a standalone document.
+   Deliberately ignores the web theme: white page, serif body, single column.
+   ========================================================================== */
+.print-cover, .print-footer{ display:none; }
+
 @media print{
-  /* light ground, dark text — never print the dark sections */
+  @page{ size:A4; margin:18mm; }
+
+  /* flatten the web theme to ink on paper */
   *, *::before, *::after{
     background:transparent !important; color:#111 !important;
-    box-shadow:none !important; text-shadow:none !important;
+    box-shadow:none !important; text-shadow:none !important; filter:none !important;
+    border-color:#c8c8c8 !important;
     -webkit-print-color-adjust:exact; print-color-adjust:exact;
   }
-  html, body{ background:#fff !important; }
-  body::before{ display:none !important; } /* paper grain */
+  html, body{
+    background:#fff !important; margin:0 !important; padding:0 !important;
+    font-family:Georgia, "Times New Roman", serif !important;
+    font-size:10.5pt !important; line-height:1.45 !important;
+    overflow:visible !important;
+  }
+  body::before{ display:none !important; }
 
-  /* chrome, controls and decoration */
-  #site-header, #scroll-progress, #preloader, .nav-toggle, .header-cta,
-  .hero-scroll-cue, .marquee-band, .hero-crosshair, .callout, .grain-edge,
-  #lightbox, #video-lightbox, #resume-modal, .play-badge, .video-strip,
-  .cta-links, .exp-head .plus, .print-hidden{
+  /* site chrome, controls, decoration, and web-only sections */
+  #site-header, #scroll-progress, #preloader, .nav-toggle, .header-cta, .marquee-band,
+  .hero, .hero-scroll-cue, .hero-crosshair, .callout, .grain-edge, .cta-section,
+  footer, #lightbox, #video-lightbox, #resume-modal, .play-badge, .video-strip,
+  .exp-head .plus, .print-hidden, .showcase-note{
     display:none !important;
   }
 
-  /* scroll-reveal elements must never print blank */
-  [data-reveal], [data-reveal-group], [data-reveal-group] > *{
-    opacity:1 !important; transform:none !important; filter:none !important;
-    visibility:visible !important; clip-path:none !important;
-    transition:none !important; animation:none !important;
+  /* nothing may print blank because its scroll trigger never fired */
+  [data-reveal], [data-reveal-group], [data-reveal-group] > *,
+  .exp-card, .proj-section, .about-body, .section-head{
+    opacity:1 !important; transform:none !important; visibility:visible !important;
+    clip-path:none !important; transition:none !important; animation:none !important;
   }
 
-  /* accordions print fully expanded */
+  /* ---------- cover ---------- */
+  .print-cover{
+    display:flex; flex-direction:column; justify-content:space-between;
+    height:calc(100vh - 36mm); break-after:page; page-break-after:always; text-align:center;
+  }
+  .print-cover h1{
+    font-size:34pt; font-weight:700; letter-spacing:-.01em; line-height:1.05; margin-bottom:6mm;
+  }
+  .print-cover .pc-sub{
+    font-size:13pt; letter-spacing:.22em; text-transform:uppercase;
+    font-family:Arial, Helvetica, sans-serif !important;
+  }
+  .print-cover .pc-figure{ flex:1; display:flex; align-items:center; justify-content:center; padding:10mm 0; }
+  .print-cover .pc-figure img{
+    max-width:78%; max-height:105mm; object-fit:contain; margin:0 auto;
+    border:1px solid #ccc !important;
+  }
+  .print-cover .pc-contact p{ font-size:10pt; line-height:1.6; }
+
+  /* repeated footer (Chrome renders it once; Firefox on every page) */
+  .print-footer{
+    display:block; position:fixed; bottom:0; left:0; right:0;
+    text-align:center; font-size:8pt; color:#777 !important;
+    font-family:Arial, Helvetica, sans-serif !important;
+  }
+
+  /* ---------- document flow ---------- */
+  main{ display:block; }
+  .wrap{ max-width:none !important; padding:0 !important; margin:0 !important; }
+  .section, .proj-section{
+    padding:0 0 8mm !important; margin:0 0 6mm !important; border:0 !important;
+  }
+
+  /* ---------- headings ---------- */
+  .section-head{ margin:0 0 5mm !important; display:block !important; }
+  .section-title{
+    font-size:19pt !important; font-weight:700 !important; letter-spacing:0 !important;
+    text-transform:uppercase; padding-bottom:2mm; border-bottom:1.5pt solid #111 !important;
+  }
+  .exp-org .role, .proj-col-head h3{
+    font-size:13pt !important; font-weight:700 !important; text-transform:none !important;
+    letter-spacing:0 !important; line-height:1.2 !important;
+  }
+  .exp-org .co{ font-size:10pt !important; font-style:italic; }
+  .exp-meta, .proj-date{
+    font-size:9pt !important; color:#555 !important;
+    font-family:Arial, Helvetica, sans-serif !important; text-align:left !important;
+  }
+  h1, h2, h3, h4, .section-title, .proj-col-head h3, .exp-org .role, .skill-col h3{
+    break-after:avoid !important; page-break-after:avoid !important;
+  }
+
+  /* title + dates read as one block */
+  .exp-head, .proj-col-head{ display:block !important; padding:0 !important; border:0 !important; }
+  .exp-head{ margin-bottom:2mm; }
+  .proj-index{ display:none !important; }
+
+  /* ---------- body copy ---------- */
+  .about-body{ border:0 !important; padding:0 !important; max-width:none !important; }
+  .about-body p{ font-size:10.5pt !important; line-height:1.5 !important; }
+  .proj-desc, .exp-body-inner ul{ margin:2mm 0 0 !important; }
+  .proj-desc li, .exp-body-inner > ul > li{
+    font-size:10pt !important; line-height:1.45 !important;
+    padding-left:4mm !important; margin-bottom:1.6mm !important; position:relative;
+  }
+  .proj-desc li::before, .exp-body-inner > ul > li::before{
+    content:"\2014" !important; position:absolute; left:0; color:#111 !important;
+  }
+  .proj-tools{
+    font-size:8.5pt !important; color:#555 !important; margin-top:2mm !important;
+    font-family:Arial, Helvetica, sans-serif !important; letter-spacing:.04em;
+  }
+
+  /* stat callouts as a compact line, not web tiles */
+  .exp-stats{
+    display:flex !important; flex-wrap:wrap; gap:6mm !important;
+    border:0 !important; margin:3mm 0 0 !important; padding:2mm 0 0 !important;
+    border-top:.5pt solid #ccc !important;
+  }
+  .exp-stats .s{ border:0 !important; padding:0 !important; }
+  .exp-stats .s .n{ font-size:12pt !important; font-weight:700 !important; }
+  .exp-stats .s .l{ font-size:7.5pt !important; color:#555 !important; text-transform:none !important; }
+
+  /* ---------- keep blocks whole ---------- */
+  .exp-card, .proj-section, .skill-col, .about-body,
+  .proj-img, .showcase-img, .story-step, .print-canvas-shot, .showcase-model{
+    break-inside:avoid !important; page-break-inside:avoid !important;
+  }
+  .exp-card{ border:0 !important; margin-bottom:7mm !important; }
   .exp-body{ max-height:none !important; overflow:visible !important; }
-  .exp-card{ border:1px solid #bbb !important; }
 
-  .print-header{
-    display:block; padding:0 0 14px; margin-bottom:18px; border-bottom:2px solid #111;
+  /* ---------- images: consistent width, centred, never a full page ---------- */
+  .proj-img, .showcase-img, .showcase-model, .story-step .thumb{
+    aspect-ratio:auto !important; height:auto !important;
+    border:1px solid #ccc !important; background-image:none !important;
+    overflow:visible !important; cursor:auto !important;
   }
-  .print-header h1{ font-size:24pt; font-weight:700; letter-spacing:-.01em; }
-  .print-header p{ font-size:9pt; margin-top:4px; color:#333 !important; }
-
-  .print-canvas-shot{ width:100%; max-height:8cm; object-fit:contain; }
-
-  .section, .proj-section{ padding:14px 0 !important; border-color:#ccc !important; }
-  .wrap{ max-width:none; padding:0; }
-  .frame{ border:1px solid #ccc !important; background-image:none !important; }
-
-  /* pagination */
-  .proj-section, .exp-card, .skill-col, .showcase-img, .proj-img, .about-body{
-    break-inside:avoid; page-break-inside:avoid;
+  .proj-img img, .showcase-img img, .story-step img, .print-canvas-shot{
+    position:static !important; width:100% !important; height:auto !important;
+    max-height:72mm !important; object-fit:contain !important;
+    padding:0 !important; margin:0 auto !important;
   }
-  h1, h2, h3, h4, .section-title, .proj-col-head h3{
-    break-after:avoid; page-break-after:avoid;
+  .proj-img-grid, .showcase-grid, .showcase-strip{
+    display:grid !important; grid-template-columns:1fr 1fr !important;
+    gap:4mm !important; width:66% !important; margin:4mm auto 0 !important;
   }
-  .section-title{ font-size:16pt; }
-  .proj-col-head h3{ font-size:13pt; }
-  .proj-desc li, .exp-body-inner li{ font-size:9.5pt; line-height:1.45; }
+  .story-strip{
+    display:grid !important; grid-template-columns:repeat(4, 1fr) !important;
+    gap:3mm !important; width:80% !important; margin:4mm auto 0 !important; border:0 !important;
+  }
+  .proj-col-media, .upright-showcase{
+    width:100% !important; margin-top:3mm !important; border:0 !important; padding:0 !important;
+  }
+  .showcase-cap, .story-step .cap{
+    position:static !important; background:none !important; border:0 !important;
+    padding:1mm 0 0 !important; font-size:8pt !important; color:#555 !important;
+    text-align:center; font-family:Arial, Helvetica, sans-serif !important;
+    break-before:avoid !important; page-break-before:avoid !important;
+  }
+  .showcase-label{ font-size:10pt !important; font-weight:700 !important; margin:3mm 0 2mm !important; }
+  .year-tag, .year-tag-alt{ border:.5pt solid #999 !important; padding:0 1mm !important; font-size:7.5pt !important; }
 
-  /* let media reflow rather than crop */
-  .proj-img, .showcase-img, .showcase-model{ aspect-ratio:auto !important; height:auto !important; }
-  .proj-img img, .showcase-img img{ position:static !important; height:auto !important; object-fit:contain !important; }
-  .proj-img-grid, .showcase-grid, .story-strip{ display:grid !important; grid-template-columns:1fr 1fr !important; gap:8px !important; }
-  img{ max-width:100% !important; }
+  /* ---------- skills ---------- */
+  .skills-grid{
+    display:grid !important; grid-template-columns:1fr 1fr !important;
+    gap:4mm 8mm !important; border:0 !important;
+  }
+  .skill-col{ border:0 !important; padding:0 !important; }
+  .skill-col h3{ font-size:10.5pt !important; margin-bottom:1.5mm !important; }
+  .skill-col ul{ display:block !important; }
+  .skill-col li{
+    display:inline !important; font-size:9.5pt !important; padding:0 !important;
+    color:#222 !important; font-family:Georgia, serif !important;
+  }
+  .skill-col li::before{ content:"" !important; }
+  .skill-col li:not(:last-child)::after{ content:" \00B7 " !important; color:#888 !important; }
 
   a[href]{ text-decoration:none !important; }
-  @page{ margin:14mm; }
+  img{ max-width:100% !important; }
 }

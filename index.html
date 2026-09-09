@@ -57,12 +57,21 @@
   </div>
 </header>
 
-<!-- ============ PRINT-ONLY HEADER ============ -->
-<div class="print-header" aria-hidden="true">
-  <h1>Sathya Devarajan</h1>
-  <p>Mechanical Engineer · Purdue University — B.S. Mechanical Engineering, Expected May 2028</p>
-  <p>630-888-0715 · sathyadevarajan07@gmail.com · linkedin.com/in/sathya-devarajan · West Lafayette, IN</p>
+<!-- ============ PRINT-ONLY COVER ============ -->
+<div class="print-cover" aria-hidden="true">
+  <div class="pc-top">
+    <h1>Sathya Devarajan</h1>
+    <p class="pc-sub">Engineering Portfolio</p>
+  </div>
+  <div class="pc-figure">
+    <img src="assets/images/upright-5axis-machined.jpg" alt="">
+  </div>
+  <div class="pc-contact">
+    <p>Purdue University — B.S. Mechanical Engineering · Expected May 2028</p>
+    <p>630-888-0715 · sathyadevarajan07@gmail.com · linkedin.com/in/sathya-devarajan</p>
+  </div>
 </div>
+<div class="print-footer" aria-hidden="true">sathyadev07.github.io/sathya-devarajan-portfolio</div>
 
 <main id="top">
 
@@ -678,6 +687,9 @@
     <div class="rm-bar">
       <h2 id="resume-modal-title">Resume</h2>
       <div class="rm-actions">
+        <a class="btn" id="rm-newtab" href="assets/Resume.pdf" target="_blank" rel="noopener">Open in new tab
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
         <a class="btn btn-solid" id="rm-download" href="assets/Resume.pdf" download="Sathya-Devarajan-Resume.pdf">Download PDF
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12M6 12l6 6 6-6M4 20h16"/></svg>
         </a>
@@ -688,10 +700,6 @@
     </div>
     <div class="rm-stage" id="rm-stage">
       <!-- iframe injected on first open so the PDF is not fetched on page load -->
-      <p class="rm-fallback" id="rm-fallback" hidden>
-        This browser can't display the PDF inline.
-        <a href="assets/Resume.pdf" target="_blank" rel="noopener">Open the resume in a new tab</a>.
-      </p>
     </div>
   </div>
 </div>
