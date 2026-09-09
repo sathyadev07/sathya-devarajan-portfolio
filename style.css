@@ -3,7 +3,13 @@
    Design system: cream/blueprint technical aesthetic, orange accent
    ========================================================================== */
 
-@import url('https://api.fontshare.com/v2/css?f[]=chillax@400&display=swap');
+@font-face{
+  font-family:'JetBrains Mono';
+  src:url('assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
 
 :root{
   --bg: #F1EFE6;
@@ -24,9 +30,9 @@
   --dark-line: rgba(237,233,220,.16);
   --dark-line-strong: rgba(237,233,220,.3);
 
-  --display: 'Chillax', 'Arial Narrow', sans-serif;
-  --body: 'Chillax', -apple-system, sans-serif;
-  --mono: 'Chillax', 'Courier New', monospace;
+  --display: 'JetBrains Mono', 'Arial Narrow', sans-serif;
+  --body: 'JetBrains Mono', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
 
   --container: 1360px;
   --gutter: clamp(20px, 4vw, 56px);
