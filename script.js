@@ -504,19 +504,144 @@
     });
   }
 
+  /* Frame the model tightly before capturing. These are <model-viewer>
+     elements, so the fit is applied through its camera API rather than a raw
+     THREE camera, but the maths is the same: derive the distance that makes the
+     model fill the vertical FOV, correct it for aspect so wide models are not
+     clipped, and move along the *existing* view direction so the authored
+     angles are preserved. */
+  /* Capture at the viewer's native buffer size. Oversizing the element to force
+     a higher-resolution buffer makes model-viewer reallocate it, and the capture
+     comes back fully transparent. Native is ~894px tall against a 72mm print
+     cap, which is already past 300dpi. */
+  const FIT_MARGIN = 1.08;
+
+  function fitViewerToFrame(mv){
+    const saved = {
+      orbit: mv.getAttribute('camera-orbit'),
+      target: mv.getAttribute('camera-target')
+    };
+    try {
+      const rect = mv.getBoundingClientRect();
+      const size = mv.getDimensions();          // model bounds
+      const orbit = mv.getCameraOrbit();        // current direction + distance
+      const fov = mv.getFieldOfView();          // vertical, degrees
+      const aspect = rect.width / rect.height;
+
+      /* Project the model's bounding box onto the camera's right/up axes rather
+         than using its largest 3D dimension. maxDim cannot clip, but for a flat
+         part viewed face-on it pushes the camera much further back than needed. */
+      const t = orbit.theta, p = orbit.phi;
+      const dir = { x: Math.sin(p) * Math.sin(t), y: Math.cos(p), z: Math.sin(p) * Math.cos(t) };
+      // right = normalize(cross(worldUp, dir)); up = cross(dir, right)
+      let rx = dir.z, ry = 0, rz = -dir.x;
+      const rl = Math.hypot(rx, ry, rz) || 1;
+      rx /= rl; ry /= rl; rz /= rl;
+      const ux = dir.y * rz - dir.z * ry;
+      const uy = dir.z * rx - dir.x * rz;
+      const uz = dir.x * ry - dir.y * rx;
+
+      const halfW = 0.5 * (Math.abs(rx) * size.x + Math.abs(ry) * size.y + Math.abs(rz) * size.z);
+      const halfH = 0.5 * (Math.abs(ux) * size.x + Math.abs(uy) * size.y + Math.abs(uz) * size.z);
+
+      const tanHalfFov = Math.tan((fov * Math.PI / 180) / 2);
+      const fitH = halfH / tanHalfFov;
+      const fitW = halfW / (tanHalfFov * aspect);
+      const distance = Math.max(fitH, fitW) * FIT_MARGIN;
+
+      const theta = orbit.theta * 180 / Math.PI;
+      const phi = orbit.phi * 180 / Math.PI;
+      mv.setAttribute('camera-target', 'auto auto auto'); // bounding-box centre
+      mv.setAttribute('camera-orbit', theta + 'deg ' + phi + 'deg ' + distance + 'm');
+      mv.jumpCameraToGoal();
+    } catch (err){
+      console.warn('[print] fit failed, capturing as-is', err);
+    }
+    return saved;
+  }
+
+  /* Measure the drawn model's extent in a capture and pull the camera in so it
+     fills the target fraction of the frame. Perspective size goes as 1/distance,
+     so the correction is a straight ratio. */
+  const FILL_TARGET = 0.9;
+
+  function measureFill(dataUrl){
+    return new Promise(resolve => {
+      const probe = new Image();
+      probe.onload = () => {
+        const W = 180, H = 240;
+        const c = document.createElement('canvas');
+        c.width = W; c.height = H;
+        const ctx = c.getContext('2d', { willReadFrequently: true });
+        ctx.drawImage(probe, 0, 0, W, H);
+        const d = ctx.getImageData(0, 0, W, H).data;
+        let minX = W, maxX = -1, minY = H, maxY = -1;
+        for (let y = 0; y < H; y++){
+          for (let x = 0; x < W; x++){
+            if (d[(y * W + x) * 4 + 3] > 12){
+              if (x < minX) minX = x; if (x > maxX) maxX = x;
+              if (y < minY) minY = y; if (y > maxY) maxY = y;
+            }
+          }
+        }
+        if (maxX < 0) return resolve(null); // nothing drawn
+        resolve(Math.max((maxX - minX + 1) / W, (maxY - minY + 1) / H));
+      };
+      probe.onerror = () => resolve(null);
+      probe.src = dataUrl;
+    });
+  }
+
+  async function refineViewerFit(mv){
+    const first = mv.toDataURL('image/png');
+    const fill = await measureFill(first);
+    if (!fill || fill <= 0.02 || fill >= FILL_TARGET) return;
+
+    const orbit = mv.getCameraOrbit();
+    const next = orbit.radius * (fill / FILL_TARGET);
+    if (!isFinite(next) || next <= 0) return;
+
+    mv.setAttribute('camera-orbit',
+      (orbit.theta * 180 / Math.PI) + 'deg ' +
+      (orbit.phi * 180 / Math.PI) + 'deg ' + next + 'm');
+    mv.jumpCameraToGoal();
+    await new Promise(r => setTimeout(r, 220));
+  }
+
+  function restoreViewer(mv, saved){
+    if (!saved) return;
+    if (saved.orbit === null) mv.removeAttribute('camera-orbit');
+    else mv.setAttribute('camera-orbit', saved.orbit);
+    if (saved.target === null) mv.removeAttribute('camera-target');
+    else mv.setAttribute('camera-target', saved.target);
+    mv.jumpCameraToGoal();
+  }
+
   async function freezeViewersForPrint(){
     const viewers = [...document.querySelectorAll('model-viewer')];
     await Promise.all(viewers.map(mv => loadViewer(mv, 8000)));
     // one more frame so the freshly loaded models are actually drawn
     await new Promise(r => setTimeout(r, 350));
 
+    // fit every viewer first, then let them all settle before capturing
+    const saves = viewers.map(mv => fitViewerToFrame(mv));
+    await new Promise(r => setTimeout(r, 400));
+
+    // The maxDim fit is deliberately conservative — it cannot clip, but a flat
+    // model viewed face-on ends up small. Measure what was actually drawn and
+    // close the distance so the model nearly fills the frame.
+    for (let i = 0; i < viewers.length; i++){
+      try { await refineViewerFit(viewers[i]); } catch (err){ /* keep the safe fit */ }
+    }
+
     const pending = [];
 
-    viewers.forEach(mv => {
+    viewers.forEach((mv, i) => {
       let url = '';
       try { url = mv.toDataURL('image/png'); } catch (err) { url = ''; }
       const rect = mv.getBoundingClientRect();
       const looksReal = url.startsWith('data:image/png') && url.length > 5000 && rect.width > 200;
+      restoreViewer(mv, saves[i]); // live site is unchanged from here on
 
       if (!looksReal){
         // never print an empty box in place of a model
