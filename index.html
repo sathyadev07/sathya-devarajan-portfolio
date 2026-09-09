@@ -8,6 +8,18 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="style.css">
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="assets/js/hero-scene.js"></script>
+<script type="module" src="assets/js/reveals.js"></script>
 </head>
 <body>
 
@@ -59,40 +71,48 @@
 
   <!-- ============ HERO / IDENTITY ============ -->
   <section class="hero">
-    <div class="hero-top">
-      <div class="hero-kicker">
-        <span>630-888-0715 · sathyadevarajan07@gmail.com · linkedin.com/in/sathya-devarajan</span>
-        <span>U.S. CITIZEN · WEST LAFAYETTE, IN</span>
-      </div>
-      <h1 class="hero-headline" data-reveal>SATHYA DEVARAJAN</h1>
-      <p class="hero-tagline" data-reveal>Mechanical engineering student building real hardware in design, structures, and manufacturing, with an eye on problems that matter for people and the planet.</p>
-      <p class="hero-edu" data-reveal>Purdue University — John Martinson Honors College · B.S. Mechanical Engineering · GPA 3.8 · Expected May 2028</p>
-      <div class="hero-sub-row">
-        <div class="hero-role-rotator" id="role-rotator">
-          <span id="role-text">Tooling Design Engineer Intern — Lockheed Martin Sikorsky</span>
-        </div>
-        <div class="hero-scroll-cue">Scroll
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </div>
-      </div>
-    </div>
+    <div class="hero-stage" id="hero-stage">
+      <div class="hero-stage-sticky">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
-    <div class="hero-visual frame" id="hero-visual">
-      <div class="hero-collage">
-        <div class="collage-strip"><img src="assets/images/upright-wheel-cad-01.jpg" alt="Full single-wheel drivetrain assembly"></div>
-        <div class="collage-strip"><img src="assets/images/upright-fea.jpg" alt="Static FEA on the rear upright and hub assembly"></div>
-        <div class="collage-strip"><img src="assets/images/upright-cam-01-roughing.jpg" alt="5-axis CAM roughing toolpaths"></div>
-        <div class="collage-strip"><img src="assets/images/upright-5axis-machined.jpg" alt="Upright after 5-axis machining"></div>
-        <div class="collage-strip"><img src="assets/images/bike-01-frame-assembly.jpg" alt="Custom electric bike frame assembly"></div>
-        <div class="collage-strip"><img src="assets/images/bike-03-fea-stress.jpg" alt="Von Mises stress results on the bike frame"></div>
-        <div class="collage-strip"><img src="assets/images/topo-06-router.jpg" alt="CNC router carving a relief portrait"></div>
-        <div class="collage-strip"><img src="assets/images/topo-07-final.jpg" alt="Finished carved relief portrait in hardwood"></div>
+        <!-- Static fallback: shown when WebGL is unavailable, so the hero is
+             never empty. Same imagery the site used before the 3D scene. -->
+        <div class="hero-visual frame" id="hero-fallback" hidden>
+          <div class="hero-collage">
+            <div class="collage-strip"><img src="assets/images/upright-wheel-cad-01.jpg" alt="Full single-wheel drivetrain assembly"></div>
+            <div class="collage-strip"><img src="assets/images/upright-fea.jpg" alt="Static FEA on the rear upright and hub assembly"></div>
+            <div class="collage-strip"><img src="assets/images/upright-cam-01-roughing.jpg" alt="5-axis CAM roughing toolpaths"></div>
+            <div class="collage-strip"><img src="assets/images/upright-5axis-machined.jpg" alt="Upright after 5-axis machining"></div>
+            <div class="collage-strip"><img src="assets/images/bike-01-frame-assembly.jpg" alt="Custom electric bike frame assembly"></div>
+            <div class="collage-strip"><img src="assets/images/bike-03-fea-stress.jpg" alt="Von Mises stress results on the bike frame"></div>
+            <div class="collage-strip"><img src="assets/images/topo-06-router.jpg" alt="CNC router carving a relief portrait"></div>
+            <div class="collage-strip"><img src="assets/images/topo-07-final.jpg" alt="Finished carved relief portrait in hardwood"></div>
+          </div>
+          <div class="grain-edge"></div>
+          <div class="callout" id="callout-1"><b>5-AXIS CNC</b>50% reduction in machining time vs. prior 3-axis process</div>
+          <div class="callout" id="callout-2"><b>GD&amp;T</b>Bearing &amp; seal bores toleranced for manual boring accuracy</div>
+          <div class="callout" id="callout-3"><b>SF 2.0 MIN.</b>Static load cases validated in Ansys FEA</div>
+          <div class="hero-crosshair" id="hero-crosshair"><div class="cross-h"></div><div class="cross-v"></div><div class="cross-label" id="crosshair-label">X 0000 · Y 0000</div></div>
+        </div>
+
+        <div class="hero-copy">
+          <div class="hero-kicker">
+            <span>630-888-0715 · sathyadevarajan07@gmail.com · linkedin.com/in/sathya-devarajan</span>
+            <span>U.S. CITIZEN · WEST LAFAYETTE, IN</span>
+          </div>
+          <h1 class="hero-headline">SATHYA DEVARAJAN</h1>
+          <p class="hero-tagline">Mechanical engineering student building real hardware in design, structures, and manufacturing, with an eye on problems that matter for people and the planet.</p>
+          <p class="hero-edu">Purdue University — John Martinson Honors College · B.S. Mechanical Engineering · GPA 3.8 · Expected May 2028</p>
+          <div class="hero-sub-row">
+            <div class="hero-role-rotator" id="role-rotator">
+              <span id="role-text">Tooling Design Engineer Intern — Lockheed Martin Sikorsky</span>
+            </div>
+            <div class="hero-scroll-cue">Scroll
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="grain-edge"></div>
-      <div class="callout" id="callout-1"><b>5-AXIS CNC</b>50% reduction in machining time vs. prior 3-axis process</div>
-      <div class="callout" id="callout-2"><b>GD&amp;T</b>Bearing &amp; seal bores toleranced for manual boring accuracy</div>
-      <div class="callout" id="callout-3"><b>SF 2.0 MIN.</b>Static load cases validated in Ansys FEA</div>
-      <div class="hero-crosshair" id="hero-crosshair"><div class="cross-h"></div><div class="cross-v"></div><div class="cross-label" id="crosshair-label">X 0000 · Y 0000</div></div>
     </div>
 
     <div class="hero-metrics hairline">
