@@ -104,7 +104,17 @@
     });
   }
 
-  /* Scroll reveals live in assets/js/reveals.js (GSAP ScrollTrigger). */
+  /* ============ REVEAL ON SCROLL ============ */
+  const revealEls = document.querySelectorAll('[data-reveal], [data-reveal-group]');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.12, rootMargin:'0px 0px -60px 0px' });
+  revealEls.forEach(el => revealObserver.observe(el));
 
   /* ============ COUNT-UP NUMBERS ============ */
   const countEls = document.querySelectorAll('[data-count]');

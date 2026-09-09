@@ -141,52 +141,22 @@ body::before{
 .btn-arrow:hover svg{ transform:translate(3px,-3px); }
 .btn-arrow:hover{ border-color:var(--accent); color:var(--accent); }
 
-/* ==================== REVEAL ANIMATION ====================
-   Reveals are driven by GSAP ScrollTrigger (assets/js/reveals.js), which hides
-   elements only once it is confirmed running. Nothing is hidden in CSS, so if
-   JS fails or motion is disabled the content stays visible and readable. */
-.rv-char{ display:inline-block; white-space:pre; will-change:transform,opacity; }
-
-/* ==================== HERO 3D STAGE ==================== */
-.hero-stage{ position:relative; }
-.hero-stage-sticky{
-  position:relative; height:100svh; min-height:560px; width:100%;
-  overflow:hidden; background:var(--bg);
+/* ==================== REVEAL ANIMATION ==================== */
+[data-reveal]{
+  opacity:0; transform:translateY(26px);
+  transition:opacity .8s cubic-bezier(.16,.84,.44,1), transform .8s cubic-bezier(.16,.84,.44,1);
 }
-#hero-canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; }
-
-.hero-copy{
-  position:absolute; inset:0; z-index:2;
-  display:flex; flex-direction:column; justify-content:center;
-  pointer-events:none;
-  will-change:opacity, transform;
-}
-.hero-copy > *{ pointer-events:auto; }
-.hero-copy .hero-kicker{ position:absolute; top:0; left:0; right:0; }
-.hero-copy .hero-sub-row{ position:absolute; bottom:0; left:0; right:0; }
-/* soft scrim so the copy stays legible over whatever the camera is framing */
-.hero-copy::before{
-  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
-  background:linear-gradient(90deg,
-    rgba(241,239,230,.94) 0%,
-    rgba(241,239,230,.86) 38%,
-    rgba(241,239,230,.45) 58%,
-    rgba(241,239,230,0) 74%);
-}
-.hero-copy .hero-tagline,
-.hero-copy .hero-edu{ max-width:min(46vw, 560px); }
-@media (max-width:900px){
-  .hero-copy::before{ background:linear-gradient(180deg,
-    rgba(241,239,230,.92) 0%, rgba(241,239,230,.7) 55%, rgba(241,239,230,.25) 100%); }
-  .hero-copy .hero-tagline,
-  .hero-copy .hero-edu{ max-width:none; }
-}
-/* fallback collage fills the stage when WebGL is unavailable */
-#hero-fallback{ position:absolute; inset:0; z-index:1; margin:0; height:100%; }
-#hero-fallback .hero-collage{ height:100%; }
-@media (max-width:700px){
-  .hero-stage-sticky{ height:88svh; min-height:480px; }
-}
+[data-reveal].is-visible{ opacity:1; transform:translateY(0); }
+[data-reveal-group] > *{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.16,.84,.44,1), transform .7s cubic-bezier(.16,.84,.44,1); }
+[data-reveal-group].is-visible > *{ opacity:1; transform:translateY(0); }
+[data-reveal-group].is-visible > *:nth-child(1){ transition-delay:.02s; }
+[data-reveal-group].is-visible > *:nth-child(2){ transition-delay:.09s; }
+[data-reveal-group].is-visible > *:nth-child(3){ transition-delay:.16s; }
+[data-reveal-group].is-visible > *:nth-child(4){ transition-delay:.23s; }
+[data-reveal-group].is-visible > *:nth-child(5){ transition-delay:.30s; }
+[data-reveal-group].is-visible > *:nth-child(6){ transition-delay:.37s; }
+[data-reveal-group].is-visible > *:nth-child(7){ transition-delay:.44s; }
+[data-reveal-group].is-visible > *:nth-child(8){ transition-delay:.51s; }
 
 /* ==================== SCROLL PROGRESS ==================== */
 #scroll-progress{ position:fixed; top:0; left:0; height:2px; background:var(--accent); width:0%; z-index:500; }
