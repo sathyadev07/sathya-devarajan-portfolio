@@ -30,9 +30,12 @@
   --dark-line: rgba(237,233,220,.16);
   --dark-line-strong: rgba(237,233,220,.3);
 
+  /* JetBrains Mono carries the technical voice — headings and all metadata.
+     Long-form copy moves to a humanist sans for readability; mono paragraphs
+     are hard to read at length. No webfont request: the body stack is local. */
   --display: 'JetBrains Mono', 'Arial Narrow', sans-serif;
-  --body: 'JetBrains Mono', -apple-system, sans-serif;
   --mono: 'JetBrains Mono', 'Courier New', monospace;
+  --body: ui-sans-serif, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
   --container: 1360px;
   --gutter: clamp(20px, 4vw, 56px);
@@ -625,6 +628,115 @@ footer{ background:var(--dark); color:var(--dark-ink); padding:70px 0 26px; }
   .rm-actions .btn{ padding:9px 11px; font-size:10px; }
 }
 
+
+/* ==========================================================================
+   DESIGN LANGUAGE LAYER
+   Borrows from technical drawing practice — hairlines, dimension rules,
+   registration ticks, monospace metadata — without becoming a blueprint
+   pastiche. Screen only; the print sheet overrides all of this.
+   ========================================================================== */
+
+/* ---------- typographic hierarchy ---------- */
+body{ font-size:16.5px; line-height:1.6; }
+
+.section-title,
+.hero-headline,
+.cta-title,
+.proj-col-head h3,
+.exp-org .role{
+  text-wrap:balance;               /* no orphaned words in headings */
+  letter-spacing:-.035em;          /* tighter than the mono default */
+}
+
+/* body copy: real measure and leading, not mono-cramped */
+.about-body p{ max-width:68ch; line-height:1.72; font-size:17px; }
+.proj-desc li,
+.exp-body-inner > ul > li{ font-size:15px; line-height:1.65; max-width:70ch; }
+.hero-tagline{ max-width:min(46vw,560px); line-height:1.55; }
+
+/* numbers align in columns */
+.hero-metrics .m .num,
+.exp-stats .s .n,
+.proj-index,
+.proj-date,
+.exp-meta{ font-variant-numeric:tabular-nums; }
+
+/* ---------- section head as a dimension line ---------- */
+.section-head{
+  position:relative;
+  padding-top:26px;
+  align-items:flex-end;
+}
+/* the rule, with a tick at each end — a dimension callout, not a divider */
+.section-head::before{
+  content:"";
+  position:absolute; top:0; left:0; right:0; height:9px;
+  border-top:1px solid var(--line-strong);
+  border-left:1px solid var(--line-strong);
+  border-right:1px solid var(--line-strong);
+  pointer-events:none;
+}
+.section-title{ letter-spacing:-.035em; }
+
+/* ---------- hairline discipline ---------- */
+.exp-card{ border-color:var(--line); }
+.exp-card.open{ border-color:var(--line-strong); }
+
+/* ---------- interaction: precise, quiet ---------- */
+a, button, .proj-img, .showcase-thumb, .story-step, .video-item{
+  transition:color .18s ease, background-color .18s ease,
+             border-color .18s ease, opacity .18s ease, transform .18s ease;
+}
+
+/* visible keyboard focus everywhere — none existed before */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+model-viewer:focus-visible,
+.proj-img:focus-visible,
+.showcase-thumb:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+  border-radius:1px;
+}
+:focus:not(:focus-visible){ outline:none; }
+
+/* nav: accent rule grows from the left rather than a colour swap */
+nav.main-nav a{ position:relative; }
+nav.main-nav a::after{
+  content:""; position:absolute; left:0; right:0; bottom:-6px; height:1px;
+  background:var(--accent); transform:scaleX(0); transform-origin:left;
+  transition:transform .24s cubic-bezier(.16,.84,.44,1);
+}
+nav.main-nav a:hover::after,
+nav.main-nav a:focus-visible::after{ transform:scaleX(1); }
+
+/* buttons get physical feedback on press */
+.btn:active, .hdr-btn:active{ transform:translateY(1px); }
+
+/* image tiles: registration tick on hover instead of a lift */
+.proj-img::after,
+.showcase-img::after{
+  content:""; position:absolute; left:0; top:0; width:14px; height:14px;
+  border-left:1px solid var(--accent); border-top:1px solid var(--accent);
+  opacity:0; transition:opacity .2s ease; pointer-events:none; z-index:2;
+}
+.proj-img:hover::after,
+.showcase-img:hover::after{ opacity:1; }
+
+/* project index reads as a drawing-sheet part number */
+.proj-index{ letter-spacing:.16em; }
+.proj-index::before{ content:"NO. "; color:var(--ink-40); }
+
+/* ---------- optical alignment ---------- */
+.proj-desc li::before{ top:-.02em; }
+.skill-col li{ line-height:1.75; }
+
+@media (prefers-reduced-motion: reduce){
+  a, button, .proj-img, .showcase-thumb, .story-step, .video-item,
+  nav.main-nav a::after{ transition:none !important; }
+}
+
 /* ==========================================================================
    PRINT — the portfolio rendered as a standalone document.
    Deliberately ignores the web theme: white page, serif body, single column.
@@ -712,7 +824,9 @@ footer{ background:var(--dark); color:var(--dark-ink); padding:70px 0 26px; }
   }
 
   /* ---------- headings ---------- */
-  .section-head{ margin:0 0 5mm !important; display:block !important; }
+  .section-head{ margin:0 0 5mm !important; display:block !important; padding-top:0 !important; }
+  .section-head::before{ display:none !important; }   /* screen dimension rule */
+  .proj-index::before{ content:"" !important; }
   .section-title{
     font-size:19pt !important; font-weight:700 !important; letter-spacing:0 !important;
     text-transform:uppercase; padding-bottom:2mm; border-bottom:1.5pt solid #111 !important;
