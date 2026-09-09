@@ -54,7 +54,8 @@
     const scrollTop = h.scrollTop || document.body.scrollTop;
     const scrollHeight = (h.scrollHeight || document.body.scrollHeight) - h.clientHeight;
     const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-    if (progressBar) progressBar.style.width = pct + '%';
+    // scaleX is composited; animating width would relayout on every scroll frame
+    if (progressBar) progressBar.style.transform = 'scaleX(' + (pct / 100) + ')';
   }
 
   /* ============ HEADER SHOW/HIDE ============ */
@@ -109,8 +110,13 @@
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting){
-        entry.target.classList.add('is-visible');
-        revealObserver.unobserve(entry.target);
+        const el = entry.target;
+        el.classList.add('is-visible');
+        revealObserver.unobserve(el);
+        // drop the compositor layer once the reveal has finished
+        const done = () => el.classList.add('reveal-done');
+        el.addEventListener('transitionend', done, { once:true });
+        setTimeout(done, 1400); // fallback if transitionend never fires
       }
     });
   }, { threshold:0.12, rootMargin:'0px 0px -60px 0px' });
@@ -164,13 +170,32 @@
   const crosshair = document.getElementById('hero-crosshair');
   const crosshairLabel = document.getElementById('crosshair-label');
   if (heroVisual && crosshair && crosshairLabel){
+    /* Cache the rect instead of measuring inside the pointer handler — reading
+       getBoundingClientRect() on every mousemove forces a synchronous layout —
+       and write the transform once per frame rather than once per event. */
+    let heroRect = null;
+    let pending = false;
+    let px = 0, py = 0;
+
+    const measure = () => { heroRect = heroVisual.getBoundingClientRect(); };
+    measure();
+    window.addEventListener('resize', measure);
+    window.addEventListener('scroll', measure, { passive:true });
+
+    function paintCrosshair(){
+      pending = false;
+      crosshair.style.transform = `translate(${px}px, ${py}px)`;
+      crosshairLabel.textContent = `X ${String(Math.round(px)).padStart(4,'0')} · Y ${String(Math.round(py)).padStart(4,'0')}`;
+    }
+
     heroVisual.addEventListener('mousemove', (e) => {
-      const rect = heroVisual.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      crosshair.style.transform = `translate(${x}px, ${y}px)`;
-      crosshairLabel.textContent = `X ${String(Math.round(x)).padStart(4,'0')} · Y ${String(Math.round(y)).padStart(4,'0')}`;
-    });
+      if (!heroRect) measure();
+      px = e.clientX - heroRect.left;
+      py = e.clientY - heroRect.top;
+      if (!pending){ pending = true; requestAnimationFrame(paintCrosshair); }
+    }, { passive:true });
+
+    heroVisual.addEventListener('mouseenter', measure, { passive:true });
     heroVisual.addEventListener('mouseleave', () => {
       crosshairLabel.textContent = 'X 0000 · Y 0000';
     });

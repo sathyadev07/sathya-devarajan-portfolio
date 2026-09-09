@@ -145,12 +145,15 @@ body::before{
 .btn-arrow:hover{ border-color:var(--accent); color:var(--accent); }
 
 /* ==================== REVEAL ANIMATION ==================== */
+/* will-change promotes these to their own layer for the reveal; script.js
+   clears it on transitionend so idle elements do not hold layers open */
 [data-reveal]{
-  opacity:0; transform:translateY(26px);
+  opacity:0; transform:translateY(26px); will-change:opacity, transform;
   transition:opacity .8s cubic-bezier(.16,.84,.44,1), transform .8s cubic-bezier(.16,.84,.44,1);
 }
+[data-reveal].reveal-done, [data-reveal-group].reveal-done > *{ will-change:auto; }
 [data-reveal].is-visible{ opacity:1; transform:translateY(0); }
-[data-reveal-group] > *{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.16,.84,.44,1), transform .7s cubic-bezier(.16,.84,.44,1); }
+[data-reveal-group] > *{ opacity:0; transform:translateY(22px); will-change:opacity, transform; transition:opacity .7s cubic-bezier(.16,.84,.44,1), transform .7s cubic-bezier(.16,.84,.44,1); }
 [data-reveal-group].is-visible > *{ opacity:1; transform:translateY(0); }
 [data-reveal-group].is-visible > *:nth-child(1){ transition-delay:.02s; }
 [data-reveal-group].is-visible > *:nth-child(2){ transition-delay:.09s; }
@@ -162,7 +165,10 @@ body::before{
 [data-reveal-group].is-visible > *:nth-child(8){ transition-delay:.51s; }
 
 /* ==================== SCROLL PROGRESS ==================== */
-#scroll-progress{ position:fixed; top:0; left:0; height:2px; background:var(--accent); width:0%; z-index:500; }
+#scroll-progress{
+  position:fixed; top:0; left:0; height:2px; background:var(--accent); z-index:500;
+  width:100%; transform:scaleX(0); transform-origin:0 50%; will-change:transform;
+}
 
 /* ==================== PRELOADER ==================== */
 #preloader{
