@@ -1,718 +1,194 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sathya Devarajan — Mechanical Engineer</title>
-<meta name="description" content="Portfolio of Sathya Devarajan — mechanical engineering student at Purdue University. Experience, projects, and skills in CAD, FEA, and CNC manufacturing.">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css">
-<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio of Sathya Devarajan — mechanical engineering student at Purdue University. Experience, projects, and skills in CAD, FEA, and CNC manufacturing.">
+  <title>Sathya Devarajan — Mechanical Engineer</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Inline so the browser's automatic /favicon.ico probe never 404s. -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23050B1A'/%3E%3Cpath d='M7 21c4-9 14-9 18 0' stroke='%2300FF87' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M9 25c3.5-6 10.5-6 14 0' stroke='%2300D4FF' stroke-width='2' fill='none' stroke-linecap='round' opacity='.75'/%3E%3C/svg%3E">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="aurora-field" aria-hidden="true"><i class="curtain curtain-a"></i><i class="curtain curtain-b"></i><i class="curtain curtain-c"></i></div>
+  <div class="halo" aria-hidden="true"></div>
 
-<!-- ============ PRELOADER ============ -->
-<div id="preloader">
-  <div class="boot-top">
-    <span>SATHYA DEVARAJAN — PORTFOLIO</span>
-    <span id="boot-clock">00:00:00</span>
-  </div>
-  <div class="boot-pct" id="boot-pct">00%</div>
-  <div id="boot-lines">
-    <div class="boot-line">001 LOADING CAD KERNEL</div>
-    <div class="boot-line">002 IMPORTING GEOMETRY</div>
-    <div class="boot-line">003 GENERATING FEA MESH</div>
-    <div class="boot-line">004 RUNNING STATIC SOLVER</div>
-    <div class="boot-line">005 CALCULATING 5-AXIS TOOLPATHS</div>
-    <div class="boot-line">006 CHECKING GD&amp;T CALLOUTS</div>
-    <div class="boot-line ok">007 <span class="ok-tag">READY</span></div>
-  </div>
-</div>
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="nav-link" href="#about">About</a><a class="nav-link" href="#experience">Experience</a><a class="nav-link" href="#projects">Projects</a><a class="nav-link" href="#skills">Skills</a><a class="nav-link" href="#contact">Contact</a>
+  </nav>
 
-<div id="scroll-progress"></div>
-
-<!-- ============ HEADER ============ -->
-<header id="site-header">
-  <div class="header-inner">
-    <a href="#top" class="logo">
-      <svg class="logo-mark" viewBox="0 0 26 26" fill="none">
-        <rect x="1" y="1" width="24" height="24" stroke-width="1"/>
-        <circle cx="13" cy="13" r="5" stroke-width="1"/>
-        <path d="M13 1v6M13 19v6M1 13h6M19 13h6" stroke-width="1"/>
-      </svg>
-      SATHYA DEVARAJAN
-    </a>
-    <nav class="main-nav" id="main-nav">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="header-cta">
-      <button class="hdr-btn hdr-btn-solid" id="open-resume" type="button"><span class="lbl-full">View Resume</span><span class="lbl-short">Resume</span></button>
-      <button class="hdr-btn" id="print-portfolio" type="button"><span class="lbl-full">Download Portfolio PDF</span><span class="lbl-short">PDF</span></button>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-</header>
-
-<!-- ============ PRINT-ONLY COVER ============ -->
-<div class="print-cover" aria-hidden="true">
-  <div class="pc-top">
-    <h1>Sathya Devarajan</h1>
-    <p class="pc-sub">Engineering Portfolio</p>
-  </div>
-  <div class="pc-figure">
-    <div class="pc-collage">
-      <img class="pc-hero" src="assets/images/upright-wheel-cad-01.jpg" alt="">
-      <img src="assets/images/upright-fea.jpg" alt="">
-      <img src="assets/images/upright-5axis-machined.jpg" alt="">
-      <img src="assets/images/bike-01-frame-assembly.jpg" alt="">
-      <img src="assets/images/bike-03-fea-stress.jpg" alt="">
-      <img src="assets/images/topo-06-router.jpg" alt="">
-      <img src="assets/images/upright-cam-01-roughing.jpg" alt="">
-      <img class="pc-wide" src="assets/images/topo-07-final.jpg" alt="">
-    </div>
-  </div>
-  <div class="pc-contact">
-    <p>Purdue University — B.S. Mechanical Engineering · Expected May 2028</p>
-    <p>630-888-0715 · sathyadevarajan07@gmail.com · linkedin.com/in/sathya-devarajan</p>
-  </div>
-</div>
-<div class="print-footer" aria-hidden="true">sathyadev07.github.io/sathya-devarajan-portfolio</div>
-
-<main id="top">
-
-  <!-- ============ HERO / IDENTITY ============ -->
-  <section class="hero">
-    <div class="hero-top">
-      <div class="hero-kicker">
-        <span>630-888-0715 · sathyadevarajan07@gmail.com · linkedin.com/in/sathya-devarajan</span>
-        <span>U.S. CITIZEN · WEST LAFAYETTE, IN</span>
-      </div>
-      <h1 class="hero-headline" data-reveal>SATHYA DEVARAJAN</h1>
-      <p class="hero-tagline" data-reveal>Mechanical engineering student building real hardware in design, structures, and manufacturing, with an eye on problems that matter for people and the planet.</p>
-      <p class="hero-edu" data-reveal>Purdue University — John Martinson Honors College · B.S. Mechanical Engineering · GPA 3.8 · Expected May 2028</p>
-      <div class="hero-sub-row">
-        <div class="hero-role-rotator" id="role-rotator">
-          <span id="role-text">Tooling Design Engineer Intern — Lockheed Martin Sikorsky</span>
-        </div>
-        <div class="hero-scroll-cue">Scroll
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  <main id="main">
+    <!-- Cover sheet for the printed / PDF document only. Hidden on screen;
+         `display:none` until the print media query turns it on. -->
+    <section class="print-cover" aria-hidden="true">
+      <header class="pc-head">
+        <h2>Sathya Devarajan</h2>
+        <p class="pc-sub">Mechanical Engineering — Portfolio</p>
+      </header>
+      <div class="pc-figure">
+        <div class="pc-collage">
+          <img class="pc-hero" src="assets/images/upright-5axis-machined.jpg" width="1800" height="1355" alt="">
+          <img src="assets/images/upright-wheel-cad-01.jpg" width="1192" height="1075" alt="">
+          <img src="assets/images/upright-fea.jpg" width="1050" height="826" alt="">
+          <img class="pc-wide" src="assets/images/bike-01-frame-assembly.jpg" width="1425" height="983" alt="">
+          <img src="assets/images/topo-07-final.jpg" width="1800" height="1355" alt="">
+          <img src="assets/images/upright-cam-01-roughing.jpg" width="1047" height="765" alt="">
         </div>
       </div>
-    </div>
+      <footer class="pc-contact">
+        <p>Purdue University — John Martinson Honors College · B.S. Mechanical Engineering · Expected May 2028</p>
+        <p>630-888-0715 · sathyadevarajan07@gmail.com · linkedin.com/in/sathya-devarajan</p>
+      </footer>
+    </section>
 
-    <div class="hero-visual frame" id="hero-visual">
-      <div class="hero-collage">
-        <div class="collage-strip"><img src="assets/images/upright-wheel-cad-01.jpg" alt="Full single-wheel drivetrain assembly"></div>
-        <div class="collage-strip"><img src="assets/images/upright-fea.jpg" alt="Static FEA on the rear upright and hub assembly"></div>
-        <div class="collage-strip"><img src="assets/images/upright-cam-01-roughing.jpg" alt="5-axis CAM roughing toolpaths"></div>
-        <div class="collage-strip"><img src="assets/images/upright-5axis-machined.jpg" alt="Upright after 5-axis machining"></div>
-        <div class="collage-strip"><img src="assets/images/bike-01-frame-assembly.jpg" alt="Custom electric bike frame assembly"></div>
-        <div class="collage-strip"><img src="assets/images/bike-03-fea-stress.jpg" alt="Von Mises stress results on the bike frame"></div>
-        <div class="collage-strip"><img src="assets/images/topo-06-router.jpg" alt="CNC router carving a relief portrait"></div>
-        <div class="collage-strip"><img src="assets/images/topo-07-final.jpg" alt="Finished carved relief portrait in hardwood"></div>
+    <section class="hero" id="top" aria-labelledby="page-title">
+      <div class="wrap hero-inner">
+        <p class="hero-kicker"><span>630-888-0715 · sathyadevarajan07@gmail.com · linkedin.com/in/sathya-devarajan</span><span>U.S. Citizen · West Lafayette, IN</span></p>
+        <h1 class="hero-headline" id="page-title">Sathya<br>Devarajan</h1>
+        <p class="hero-role">Mechanical Engineering</p>
+        <p class="hero-tagline">Mechanical engineering student building real hardware in design, structures, and manufacturing, with an eye on problems that matter for people and the planet.</p>
+        <p class="hero-edu">Purdue University — John Martinson Honors College · B.S. Mechanical Engineering · GPA 3.8 · Expected May 2028</p>
+        <div class="hero-actions"><button class="btn btn-primary" type="button" data-print>View Portfolio PDF <span class="btn-arrow" aria-hidden="true">↗</span></button><a class="btn btn-ghost" href="assets/Resume.pdf" target="_blank" rel="noopener">View resume <span class="btn-arrow" aria-hidden="true">↗</span></a></div>
       </div>
-      <div class="grain-edge"></div>
-      <div class="callout" id="callout-1"><b>5-AXIS CNC</b>50% reduction in machining time vs. prior 3-axis process</div>
-      <div class="callout" id="callout-2"><b>GD&amp;T</b>Bearing &amp; seal bores toleranced for manual boring accuracy</div>
-      <div class="callout" id="callout-3"><b>SF 2.0 MIN.</b>Static load cases validated in Ansys FEA</div>
-      <div class="hero-crosshair" id="hero-crosshair"><div class="cross-h"></div><div class="cross-v"></div><div class="cross-label" id="crosshair-label">X 0000 · Y 0000</div></div>
-    </div>
+      <div class="hero-rail" data-pausable aria-label="Portfolio media"><div class="rail-track" aria-hidden="true">
+        <div class="rail-item"><img src="assets/images/upright-wheel-cad-01.jpg" width="1192" height="1075" alt=""></div><div class="rail-item"><img src="assets/images/upright-fea.jpg" width="1050" height="826" alt=""></div><div class="rail-item"><img src="assets/images/upright-cam-01-roughing.jpg" width="1047" height="765" alt=""></div><div class="rail-item"><img src="assets/images/upright-5axis-machined.jpg" width="1800" height="1355" alt=""></div><div class="rail-item"><img src="assets/images/bike-01-frame-assembly.jpg" width="1425" height="983" alt=""></div><div class="rail-item"><img src="assets/images/topo-07-final.jpg" width="1800" height="1355" alt=""></div>
+        <div class="rail-item"><img src="assets/images/upright-wheel-cad-01.jpg" width="1192" height="1075" alt=""></div><div class="rail-item"><img src="assets/images/upright-fea.jpg" width="1050" height="826" alt=""></div><div class="rail-item"><img src="assets/images/upright-cam-01-roughing.jpg" width="1047" height="765" alt=""></div><div class="rail-item"><img src="assets/images/upright-5axis-machined.jpg" width="1800" height="1355" alt=""></div><div class="rail-item"><img src="assets/images/bike-01-frame-assembly.jpg" width="1425" height="983" alt=""></div><div class="rail-item"><img src="assets/images/topo-07-final.jpg" width="1800" height="1355" alt=""></div>
+      </div></div>
+    </section>
 
-    <div class="hero-metrics hairline">
-      <div class="m"><div class="num">3<span class="accentdot">.</span>8</div><div class="lbl">GPA · Honors College</div></div>
-      <div class="m"><div class="num" data-count="14">0</div><div class="lbl">Tooling Solutions Designed</div></div>
-      <div class="m"><div class="num"><span data-count="50">0</span><span class="accentdot">%</span></div><div class="lbl">Faster 5-Axis Machining</div></div>
-      <div class="m"><div class="num">2<span class="accentdot">.</span>0</div><div class="lbl">Min. Safety Factor (FEA)</div></div>
-    </div>
-  </section>
+    <section class="band" data-pausable aria-label="Technical tools"><div class="band-track" aria-hidden="true"><div class="band-group"><span>Siemens NX</span><span>CATIA</span><span>Fusion 360</span><span>Creo</span><span>Ansys FEA</span><span>GD&amp;T</span><span>5-Axis CNC</span><span>Dive CFD</span><span>Python</span><span>MATLAB</span><span>KiCad</span><span>LTSpice</span></div><div class="band-group"><span>Siemens NX</span><span>CATIA</span><span>Fusion 360</span><span>Creo</span><span>Ansys FEA</span><span>GD&amp;T</span><span>5-Axis CNC</span><span>Dive CFD</span><span>Python</span><span>MATLAB</span><span>KiCad</span><span>LTSpice</span></div></div></section>
 
-  <!-- ============ MARQUEE ============ -->
-  <div class="marquee-band">
-    <div class="marquee-track">
-      <span>
-        <span>SIEMENS NX</span><span>CATIA</span><span>FUSION 360</span><span>CREO</span><span>ANSYS FEA</span><span>GD&amp;T</span><span>5-AXIS CNC</span><span>DIVE CFD</span><span>PYTHON</span><span>MATLAB</span><span>KICAD</span><span>LTSPICE</span>
-      </span>
-      <span aria-hidden="true">
-        <span>SIEMENS NX</span><span>CATIA</span><span>FUSION 360</span><span>CREO</span><span>ANSYS FEA</span><span>GD&amp;T</span><span>5-AXIS CNC</span><span>DIVE CFD</span><span>PYTHON</span><span>MATLAB</span><span>KICAD</span><span>LTSPICE</span>
-      </span>
-    </div>
-  </div>
+    <section class="section" id="about" aria-labelledby="about-title"><div class="wrap"><div class="section-head" data-reveal><p class="section-index">01 / Profile</p><h2 class="section-title" id="about-title">About</h2></div><div class="about-grid"><p class="about-lede" data-reveal>Design, structural analysis, and design-for-manufacturing. Then the systems around the hardware.</p><p class="about-body" data-reveal>My depth is in mechanical design, structural analysis, and design-for-manufacturing. I've machined drivetrain components for Purdue's Formula SAE Electric team and designed production tooling for rotorcraft at Sikorsky, and what I care about is the full path from geometry and tolerancing to a part that comes off a machine and works. From that base I've pushed outward into the systems around the hardware: sensor fusion and closed-loop control, analog circuit design, and Python simulations for feasibility and trade studies. I got into engineering to work on problems that genuinely help people and the planet, and the more of the stack I understand, the more useful I can be on them.</p></div></div></section>
 
-  <!-- ============ ABOUT ============ -->
-  <section class="section" id="about">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <h2 class="section-title">About</h2>
-      </div>
-      <div class="about-body" data-reveal>
-        <p>My depth is in mechanical design, structural analysis, and design-for-manufacturing. I've machined drivetrain components for Purdue's Formula SAE Electric team and designed production tooling for rotorcraft at Sikorsky, and what I care about is the full path from geometry and tolerancing to a part that comes off a machine and works. From that base I've pushed outward into the systems around the hardware: sensor fusion and closed-loop control, analog circuit design, and Python simulations for feasibility and trade studies. I got into engineering to work on problems that genuinely help people and the planet, and the more of the stack I understand, the more useful I can be on them.</p>
-      </div>
-    </div>
-  </section>
+    <section class="section" id="experience" aria-labelledby="experience-title"><div class="wrap"><div class="section-head" data-reveal><p class="section-index">02 / Work</p><h2 class="section-title" id="experience-title">Experience</h2></div>
+      <article class="job" data-reveal><header class="job-head"><div><h3 class="job-role">Tooling Design Engineer Intern</h3><p class="job-org">Lockheed Martin Sikorsky — Stratford, CT</p></div><p class="job-dates">Jun 2026 — Aug 2026</p></header><ul class="bullets"><li>Designed and revised 14 production tooling fixtures and jigs (drill jigs, assembly locators, masking fixtures) in CATIA V5 for CH-53K, Black Hawk, and search-and-rescue rotorcraft, 3 of which are now in use on the shop floor.</li><li>Toleranced 12 tools to ASME Y14.5 GD&amp;T, matching every callout to the process that would actually make the part (CNC milling, manual machining, or additive) rather than to a single default standard.</li><li>Traced constraint and leakage failures in 3 released production tools back to root cause and redesigned each one, which cut procurement lead time and dropped a secondary machining setup from the build.</li><li>Maintained multi-level BOMs for all 14 tools and routed engineering change orders through SAP ERP and 3DEXPERIENCE PLM, so manufacturing engineers and machinists worked from current tooling data across releases.</li><li>Co-designed the hybrid-electric powertrain for the dual-propeller Nomad VTOL, packaging an ICE, motor generator, battery pack, and a per-propeller motor and planetary gearbox inside thermal limits; presented to leadership.</li></ul><div class="metrics"><div class="metric"><span class="metric-n">14</span><span class="metric-l">Tooling solutions designed &amp; revised</span></div><div class="metric"><span class="metric-n">3</span><span class="metric-l">Designs in production use</span></div><div class="metric"><span class="metric-n">12</span><span class="metric-l">Tools toleranced to ASME Y14.5</span></div><div class="metric"><span class="metric-n">3</span><span class="metric-l">Released tools traced to root cause &amp; redesigned</span></div></div></article>
+      <article class="job" data-reveal><header class="job-head"><div><h3 class="job-role">Drivetrain Engineer</h3><p class="job-org">Purdue Electric Racing (FSAE Electric) — West Lafayette, IN</p></div><p class="job-dates">Aug 2025 — Present</p></header><ul class="bullets"><li>Designed the rear upright and planet carrier for the 2027 outrunner drivetrain in NX, cutting weight 32%.</li><li>Ran static structural FEA on the rear upright and hub group, then reworked stiffener and fillet geometry against the stress peaks and 2 mm deflections it exposed, and pulled dead weight out of near-zero-stress areas.</li><li>Drafted the rear upright to sub-0.003 in. bearing and seal bore tolerances, called out for a manual boring finish.</li><li>Cut wheel-upright machining time 50% by reworking the toolpaths from 3-axis to 5-axis CNC milling, then built the fixture plate that locates and holds the upright through the remaining 3-axis production runs.</li></ul><div class="metrics"><div class="metric"><span class="metric-n">50%</span><span class="metric-l">Faster 5-axis machining time</span></div><div class="metric"><span class="metric-n">32%</span><span class="metric-l">Weight cut from rear upright</span></div><div class="metric"><span class="metric-n">0.003&quot;</span><span class="metric-l">Bearing &amp; seal bore tolerance</span></div><div class="metric"><span class="metric-n">Custom</span><span class="metric-l">3-axis fixture plate fabricated</span></div></div>
+        <div class="showcase"><p class="showcase-label"><span class="year-tag">2027 drivetrain</span> Rear Upright &amp; Planet Carrier — Design &amp; FEA</p><div class="grid-2"><div class="viewer" data-model="assets/models/DT27_Rear_Upright.gltf" data-alt="3D model of the rear wheel upright" data-orbit="35deg 75deg 105%" data-state="loading"><div class="viewer-stage"></div><div class="viewer-fallback">Loading rear upright</div><img class="viewer-print" src="assets/images/upright-cad-01.jpg" width="978" height="1071" alt="CAD render of the rear wheel upright"></div><div class="viewer" data-model="assets/models/Drivetrain27_Asy.gltf" data-alt="3D model of the full rear drivetrain assembly" data-orbit="-20deg 78deg auto" data-orientation="90deg 0deg 0deg" data-state="loading"><div class="viewer-stage"></div><div class="viewer-fallback">Loading drivetrain assembly</div><img class="viewer-print" src="assets/images/upright-wheel-cad-02.jpg" width="1038" height="1063" alt="CAD render of the rear drivetrain assembly packaged inside the wheel"></div></div><figure class="media"><button class="zoom" type="button" data-image="assets/images/upright-fea.jpg" data-alt="Static structural FEA on the rear upright and hub assembly" data-caption="Static FEA — rear upright / hub assembly"><img src="assets/images/upright-fea.jpg" width="1050" height="826" loading="lazy" alt="Static structural FEA on the rear upright and hub assembly"></button></figure></div>
+        <div class="showcase"><p class="showcase-label"><span class="year-tag year-tag-alt">2026 drivetrain</span> Wheel Upright Manufacturing — Prior Upright Design</p><p class="showcase-note">5-axis CNC toolpathing and machining shown below were performed on the previous (2026) upright design, ahead of the 2027 redesign shown above.</p><div class="grid-4 thumb-strip"><figure class="media"><button class="zoom" type="button" data-image="assets/images/upright-cam-01-roughing.jpg" data-alt="5-axis roughing toolpaths" data-caption="5-Axis Roughing"><img src="assets/images/upright-cam-01-roughing.jpg" width="1047" height="765" loading="lazy" alt="5-axis roughing toolpaths"></button></figure><figure class="media"><button class="zoom" type="button" data-image="assets/images/upright-cam-03-finishing.jpg" data-alt="5-axis finishing toolpaths" data-caption="5-Axis Finishing"><img src="assets/images/upright-cam-03-finishing.jpg" width="863" height="594" loading="lazy" alt="5-axis finishing toolpaths"></button></figure><figure class="media"><button class="zoom" type="button" data-image="assets/images/upright-5axis-machined.jpg" data-alt="Upright after 5-axis machining operation" data-caption="After 5-Axis Op"><img src="assets/images/upright-5axis-machined.jpg" width="1800" height="1355" loading="lazy" alt="Upright after 5-axis machining operation"></button></figure><figure class="media"><button class="zoom" type="button" data-image="assets/images/upright-3axis-machined.jpg" data-alt="Upright after final 3-axis machining operation" data-caption="After Final 3-Axis Op"><img src="assets/images/upright-3axis-machined.jpg" width="1350" height="1800" loading="lazy" alt="Upright after final 3-axis machining operation"></button></figure></div></div>
+      </article></div></section>
 
-  <!-- ============ EXPERIENCE ============ -->
-  <section class="section" id="experience">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <h2 class="section-title">Experience</h2>
-      </div>
-    </div>
+    <section id="projects" aria-labelledby="projects-title"><div class="wrap section"><div class="section-head" data-reveal><p class="section-index">03 / Portfolio</p><h2 class="section-title" id="projects-title">Projects</h2></div></div>
+      <article class="project"><div class="wrap project-row"><div class="project-text" data-reveal><p class="project-index">01</p><h3 class="project-title">Custom Electric Bike Design</h3><p class="project-date">October 2025 — Present</p><ul class="bullets"><li>Built a fully parametric frame assembly in Siemens NX keyed to off-the-shelf tubing dimensions, so wheelbase, head angle, chainstay angle, and dropout geometry all update from a single set of driving inputs.</li><li>Ran Ansys FEA on each candidate frame, swapping stock tube diameters and wall thicknesses through the parametric model to find the lightest combination that holds a 2.0 minimum safety factor under static load.</li><li>Ran cost-versus-performance trade studies on motors, sprockets, and tubing alongside the FEA, converging on the cheapest catalog set that still meets the target safety factor and ride geometry, 9% under the first build cost.</li></ul><span class="project-tools">Siemens NX · Ansys FEA</span></div><div class="project-media" data-reveal><div class="viewer" data-model="assets/models/ebike-top-level-assembly.gltf" data-alt="3D model of the custom electric bike top-level assembly" data-orbit="180deg 90deg auto" data-orientation="90deg -90deg 0deg" data-state="loading"><div class="viewer-stage"></div><div class="viewer-fallback">Loading electric bike assembly</div><img class="viewer-print" src="assets/images/bike-01-frame-assembly.jpg" width="1425" height="983" alt="CAD render of the custom electric bike frame assembly"></div><div class="grid-2"><figure class="media"><button class="zoom" type="button" data-image="assets/images/bike-02-fea-prepped.jpg" data-alt="Frame prepared for FEA meshing in Ansys" data-caption="Frame prepared for FEA meshing in Ansys"><img src="assets/images/bike-02-fea-prepped.jpg" width="897" height="417" loading="lazy" alt="Frame prepared for FEA meshing in Ansys"></button></figure><figure class="media"><button class="zoom" type="button" data-image="assets/images/bike-03-fea-stress.jpg" data-alt="Von Mises stress results from Ansys FEA" data-caption="Von Mises stress results from Ansys FEA"><img src="assets/images/bike-03-fea-stress.jpg" width="897" height="417" loading="lazy" alt="Von Mises stress results from Ansys FEA"></button></figure></div></div></div></article>
+      <article class="project"><div class="wrap project-row"><div class="project-text" data-reveal><p class="project-index">02</p><h3 class="project-title">Autonomous Supply Robot</h3><p class="project-date">March 2026 — April 2026</p><ul class="bullets"><li>Navigated a walled maze on ultrasonic and IMU sensing, adding infrared to dodge heat and magnetic hazards.</li><li>Designed a gripping mechanism that holds cargo in transit and releases it at the target destination.</li><li>Logged the path traveled by IMU dead-reckoning, recording hazard and delivery coordinates into a matrix.</li></ul><span class="project-tools">Raspberry Pi Build HAT · LEGO Technic · Python · Ultrasonic/IMU/Infrared Sensors</span></div></div></article>
+      <article class="project"><div class="wrap project-row"><div class="project-text" data-reveal><p class="project-index">03</p><h3 class="project-title">Analog Audio Equalizer</h3><p class="project-date">April 2026</p><ul class="bullets"><li>Designed schematic for an audio equalizer and amplifier to recombine adjusted treble, mid, and bass frequencies for customizable output.</li><li>Troubleshot and validated breadboard circuit assembly via frequency generator, oscilloscope, and multimeter.</li></ul><span class="project-tools">LTSpice · KiCad</span></div><div class="project-media" data-reveal><figure class="media"><button class="zoom" type="button" data-image="assets/images/audio-eq-schematic.png" data-alt="LTspice schematic of the treble, mid, bass, and master control equalizer stages" data-caption="Analog audio equalizer schematic"><img src="assets/images/audio-eq-schematic.png" width="1342" height="880" loading="lazy" alt="LTspice schematic of the treble, mid, bass, and master control equalizer stages"></button></figure></div></div></article>
+      <article class="project project-wide"><div class="wrap project-row"><div class="project-text" data-reveal><p class="project-index">04</p><h3 class="project-title">Complex Surface Topography</h3><p class="project-date">December 2025 — January 2026</p><ul class="bullets"><li>Produced a 2D grayscale gradient heightmap from a source portrait photo.</li><li>Built 3D mesh geometry from the heightmap in Fusion 360, keeping the organic topology machinable.</li><li>Cut machining time 60% by reworking CAM toolpaths, holding surface detail with almost no hand rework.</li></ul><span class="project-tools">Fusion 360 · CAM · CNC Router</span></div><div class="project-media" data-reveal><div class="viewer" data-model="assets/models/BabaWoodSurface.gltf" data-alt="3D model of the carved wood relief surface" data-orbit="90deg 90deg auto" data-orientation="0deg -90deg 0deg" data-state="loading"><div class="viewer-stage"></div><div class="viewer-fallback">Loading relief surface</div><img class="viewer-print" src="assets/images/topo-07-final.jpg" width="1800" height="1355" alt="The finished machined wood relief surface"></div><div class="story"> <figure class="media"><button class="zoom" type="button" data-image="assets/images/topo-01-source.jpg" data-alt="Source portrait photograph used to generate the heightmap" data-caption="01 — Source Image"><img src="assets/images/topo-01-source.jpg" width="275" height="183" loading="lazy" alt="Source portrait photograph used to generate the heightmap"></button><figcaption class="cap">01 — Source Image</figcaption></figure><figure class="media"><button class="zoom" type="button" data-image="assets/images/topo-02-heightmap.jpg" data-alt="Grayscale gradient heightmap generated from the source photo" data-caption="02 — Grayscale Heightmap"><img src="assets/images/topo-02-heightmap.jpg" width="1400" height="939" loading="lazy" alt="Grayscale gradient heightmap generated from the source photo"></button><figcaption class="cap">02 — Grayscale Heightmap</figcaption></figure><figure class="media"><button class="zoom" type="button" data-image="assets/images/topo-02b-mesh.jpg" data-alt="3D mesh converted from the heightmap in Fusion 360" data-caption="03 — 3D Mesh Conversion"><img src="assets/images/topo-02b-mesh.jpg" width="1314" height="847" loading="lazy" alt="3D mesh converted from the heightmap in Fusion 360"></button><figcaption class="cap">03 — 3D Mesh Conversion</figcaption></figure><figure class="media"><button class="zoom" type="button" data-image="assets/images/topo-03-mesh-toolpath.jpg" data-alt="CNC machining toolpaths generated over the mesh" data-caption="04 — CAM Toolpaths"><img src="assets/images/topo-03-mesh-toolpath.jpg" width="1390" height="851" loading="lazy" alt="CNC machining toolpaths generated over the mesh"></button><figcaption class="cap">04 — CAM Toolpaths</figcaption></figure><figure class="media"><button class="zoom" type="button" data-image="assets/images/topo-05-stockprep.jpg" data-alt="Hardwood stock clamped and prepared for machining" data-caption="05 — Stock Preparation"><img src="assets/images/topo-05-stockprep.jpg" width="1800" height="1350" loading="lazy" alt="Hardwood stock clamped and prepared for machining"></button><figcaption class="cap">05 — Stock Preparation</figcaption></figure><figure class="media"><button class="zoom" type="button" data-image="assets/images/topo-06-router.jpg" data-alt="CNC router carving the relief into the hardwood stock" data-caption="06 — CNC Router Operation"><img src="assets/images/topo-06-router.jpg" width="1600" height="1205" loading="lazy" alt="CNC router carving the relief into the hardwood stock"></button><figcaption class="cap">06 — CNC Router Operation</figcaption></figure><figure class="media"><button class="zoom" type="button" data-image="assets/images/topo-07-final.jpg" data-alt="Finished carved relief portrait in hardwood" data-caption="07 — Final Piece"><img src="assets/images/topo-07-final.jpg" width="1800" height="1355" loading="lazy" alt="Finished carved relief portrait in hardwood"></button><figcaption class="cap">07 — Final Piece</figcaption></figure></div><div class="video-strip"><button class="video-item" type="button" data-video="assets/video/topo-video-1.mp4" data-caption="01 — Machining Pass — Video 1"><span class="vid-wrap"><video muted loop playsinline preload="metadata" data-preview="assets/video/topo-video-1-preview.mp4"></video><span class="play-badge" aria-hidden="true">▶</span></span><span class="cap">01 — Machining Pass — Video 1</span></button><button class="video-item" type="button" data-video="assets/video/topo-video-2.mp4" data-caption="02 — Machining Pass — Video 2"><span class="vid-wrap"><video muted loop playsinline preload="metadata" data-preview="assets/video/topo-video-2-preview.mp4"></video><span class="play-badge" aria-hidden="true">▶</span></span><span class="cap">02 — Machining Pass — Video 2</span></button><button class="video-item" type="button" data-video="assets/video/topo-video-3.mp4" data-caption="03 — Machining Pass — Video 3"><span class="vid-wrap"><video muted loop playsinline preload="metadata" data-preview="assets/video/topo-video-3-preview.mp4"></video><span class="play-badge" aria-hidden="true">▶</span></span><span class="cap">03 — Machining Pass — Video 3</span></button></div></div></div></article>
+      <article class="project"><div class="wrap project-row"><div class="project-text" data-reveal><p class="project-index">05</p><h3 class="project-title">Mars Rover</h3><p class="project-date">October 2025 — December 2025</p><ul class="bullets"><li>Built a compact drivetrain with a custom worm-gear cargo system to carry 500 g loads up 35° inclines.</li><li>Wrote a Python control loop that trims motor PWM from live IMU feedback to hold the line over rough terrain.</li></ul><span class="project-tools">Raspberry Pi Build HAT · LEGO Technic · Python · IMU</span></div></div></article>
+      <article class="project"><div class="wrap project-row"><div class="project-text" data-reveal><p class="project-index">06</p><h3 class="project-title">Ethanol Production Process Optimization</h3><p class="project-date">October 2025</p><ul class="bullets"><li>Built a low-fidelity Python model of an ethanol plant, parameterized by machinery, piping, and valve specs.</li><li>Swept every valid component combination to find the plant configuration with the lowest cost per unit energy.</li></ul><span class="project-tools">Python</span></div><div class="project-media grid-4" data-reveal><figure class="media"><button class="zoom" type="button" data-image="assets/images/ethanol-01-stages.png" data-alt="Python function computing ethanol, sugar, fiber, water, and waste mass flows through each of the four process stages" data-caption="Process stages"><img src="assets/images/ethanol-01-stages.png" width="1400" height="1095" loading="lazy" alt="Python function computing ethanol, sugar, fiber, water, and waste mass flows through each of the four process stages"></button></figure><figure class="media"><button class="zoom" type="button" data-image="assets/images/ethanol-02-kinetic.png" data-alt="Python kinetic function used to model conversion rates through the plant" data-caption="Kinetic function"><img src="assets/images/ethanol-02-kinetic.png" width="1400" height="1098" loading="lazy" alt="Python kinetic function used to model conversion rates through the plant"></button></figure><figure class="media"><button class="zoom" type="button" data-image="assets/images/ethanol-03-matrices.png" data-alt="Component parameter matrices for pipe, pump, valve, fermentation, filtration, distillation, and dehydration stages" data-caption="Component parameter matrices"><img src="assets/images/ethanol-03-matrices.png" width="1158" height="1400" loading="lazy" alt="Component parameter matrices for pipe, pump, valve, fermentation, filtration, distillation, and dehydration stages"></button></figure><figure class="media"><button class="zoom" type="button" data-image="assets/images/ethanol-04-sweep.png" data-alt="Sweep routine exhaustively evaluating component combinations to minimize cost and energy" data-caption="Sweep routine"><img src="assets/images/ethanol-04-sweep.png" width="1130" height="1400" loading="lazy" alt="Sweep routine exhaustively evaluating component combinations to minimize cost and energy"></button></figure></div></div></article>
+      <article class="project"><div class="wrap project-row"><div class="project-text" data-reveal><p class="project-index">07</p><h3 class="project-title">Smog Tower Feasibility Study</h3><p class="project-date">March 2025</p><ul class="bullets"><li>Researched Studio Roosegaarde's Smog Free Tower concept and evaluated its feasibility for large-scale deployment to reduce PM2.5/PM10 air pollution in Hong Kong within realistic budget and practicality constraints.</li><li>Built a low-fidelity Python simulation modeling individual particle motion to determine each tower's effective cleaning radius — the area where PM2.5/PM10 concentrations could be held at or below global health standards.</li><li>Combined the simulation results with a scale-deployment feasibility analysis to conclude that city-wide deployment wasn't practical — a data-driven recommendation rather than a subjective call.</li></ul><span class="project-tools">Python</span></div></div></article>
+    </section>
 
-    <div class="wrap" style="padding:0;">
-      <div class="exp-card frame" data-reveal>
-        <div class="exp-head" data-exp-toggle>
-          <div class="exp-org">
-            <div class="role">Tooling Design Engineer Intern</div>
-            <div class="co">Lockheed Martin Sikorsky — Stratford, CT</div>
-          </div>
-          <div class="exp-meta">JUN 2026 — AUG 2026<span class="plus">+</span></div>
-        </div>
-        <div class="exp-body">
-          <div class="exp-body-inner">
-            <ul>
-              <li>Designed and revised 14 production tooling fixtures and jigs (drill jigs, assembly locators, masking fixtures) in CATIA V5 for CH-53K, Black Hawk, and search-and-rescue rotorcraft, 3 of which are now in use on the shop floor.</li>
-              <li>Toleranced 12 tools to ASME Y14.5 GD&amp;T, matching every callout to the process that would actually make the part (CNC milling, manual machining, or additive) rather than to a single default standard.</li>
-              <li>Traced constraint and leakage failures in 3 released production tools back to root cause and redesigned each one, which cut procurement lead time and dropped a secondary machining setup from the build.</li>
-              <li>Maintained multi-level BOMs for all 14 tools and routed engineering change orders through SAP ERP and 3DEXPERIENCE PLM, so manufacturing engineers and machinists worked from current tooling data across releases.</li>
-              <li>Co-designed the hybrid-electric powertrain for the dual-propeller Nomad VTOL, packaging an ICE, motor generator, battery pack, and a per-propeller motor and planetary gearbox inside thermal limits; presented to leadership.</li>
-            </ul>
-            <div class="exp-stats">
-              <div class="s"><div class="n">14</div><div class="l">Tooling solutions designed &amp; revised</div></div>
-              <div class="s"><div class="n">3</div><div class="l">Designs in production use</div></div>
-              <div class="s"><div class="n">12</div><div class="l">Tools toleranced to ASME Y14.5</div></div>
-              <div class="s"><div class="n">3</div><div class="l">Released tools traced to root cause &amp; redesigned</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <section class="section" id="skills" aria-labelledby="skills-title"><div class="wrap"><div class="section-head" data-reveal><p class="section-index">04 / Practice</p><h2 class="section-title" id="skills-title">Skills</h2></div><div class="skills-grid" data-reveal><section class="skill-group"><h3>CAD/CAM/PLM</h3><div class="chips"><span class="chip">CATIA V5</span><span class="chip">Siemens NX</span><span class="chip">Fusion 360</span><span class="chip">3DEXPERIENCE</span><span class="chip">Teamcenter</span><span class="chip">SAP ERP</span></div></section><section class="skill-group"><h3>Manufacturing</h3><div class="chips"><span class="chip">3- &amp; 5-Axis CNC Machining</span><span class="chip">Manual Machining</span><span class="chip">Additive Manufacturing</span><span class="chip">Fixture Design</span><span class="chip">Soldering</span></div></section><section class="skill-group"><h3>Tolerancing &amp; Analysis</h3><div class="chips"><span class="chip">GD&amp;T (ASME Y14.5)</span><span class="chip">Ansys FEA</span><span class="chip">Dive CFD</span></div></section><section class="skill-group"><h3>Modeling</h3><div class="chips"><span class="chip">Python trade studies</span><span class="chip">Combinatorial optimization</span><span class="chip">Cost &amp; energy modeling</span></div></section><section class="skill-group"><h3>Controls / Electronics</h3><div class="chips"><span class="chip">Python</span><span class="chip">MATLAB</span><span class="chip">Arduino</span><span class="chip">LTSpice</span><span class="chip">KiCad</span></div></section></div></div></section>
+    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="wrap"><p class="section-index">05 / Contact</p><h2 class="contact-name" id="contact-title">Sathya Devarajan</h2><div class="contact-actions"><a class="btn btn-primary" href="mailto:sathyadevarajan07@gmail.com">Email</a><a class="btn btn-ghost" href="https://linkedin.com/in/sathya-devarajan" target="_blank" rel="noopener">LinkedIn <span class="btn-arrow" aria-hidden="true">↗</span></a></div><p class="contact-meta"><a href="tel:+16308880715">630-888-0715</a><span>·</span><a href="mailto:sathyadevarajan07@gmail.com">sathyadevarajan07@gmail.com</a><span>·</span><span>West Lafayette, IN</span></p></div></section>
+  </main>
+  <footer class="footer"><div class="wrap"><div class="footer-grid"><section class="footer-col"><h2>Sathya Devarajan</h2><p>Mechanical Engineering<br>Purdue University</p></section><section class="footer-col"><h2>Navigate</h2><ul><li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li><li><a href="#projects">Projects</a></li><li><a href="#skills">Skills</a></li></ul></section><section class="footer-col"><h2>Connect</h2><ul><li><a href="assets/Resume.pdf" target="_blank" rel="noopener">Resume</a></li><li><a href="https://linkedin.com/in/sathya-devarajan" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="mailto:sathyadevarajan07@gmail.com">Email</a></li></ul></section></div><div class="footer-bottom"><span>© 2026 Sathya Devarajan</span><span>West Lafayette, IN</span></div></div></footer>
 
-      <div class="exp-card frame" data-reveal>
-        <div class="exp-head" data-exp-toggle>
-          <div class="exp-org">
-            <div class="role">Drivetrain Engineer</div>
-            <div class="co">Purdue Electric Racing (FSAE Electric) — West Lafayette, IN</div>
-          </div>
-          <div class="exp-meta">AUG 2025 — PRESENT<span class="plus">+</span></div>
-        </div>
-        <div class="exp-body">
-          <div class="exp-body-inner">
-            <ul>
-              <li>Designed the rear upright and planet carrier for the 2027 outrunner drivetrain in NX, cutting weight 32%.</li>
-              <li>Ran static structural FEA on the rear upright and hub group, then reworked stiffener and fillet geometry against the stress peaks and 2 mm deflections it exposed, and pulled dead weight out of near-zero-stress areas.</li>
-              <li>Drafted the rear upright to sub-0.003 in. bearing and seal bore tolerances, called out for a manual boring finish.</li>
-              <li>Cut wheel-upright machining time 50% by reworking the toolpaths from 3-axis to 5-axis CNC milling, then built the fixture plate that locates and holds the upright through the remaining 3-axis production runs.</li>
-            </ul>
-            <div class="exp-stats">
-              <div class="s"><div class="n"><span>50</span><span style="color:var(--accent)">%</span></div><div class="l">Faster 5-axis machining time</div></div>
-              <div class="s"><div class="n"><span>32</span><span style="color:var(--accent)">%</span></div><div class="l">Weight cut from rear upright</div></div>
-              <div class="s"><div class="n" style="font-size:20px;">0.003"</div><div class="l">Bearing &amp; seal bore tolerance</div></div>
-              <div class="s"><div class="n" style="font-size:20px;">CUSTOM</div><div class="l">3-axis fixture plate fabricated</div></div>
-            </div>
+  <p class="print-footer" aria-hidden="true">Sathya Devarajan · Mechanical Engineering Portfolio · sathyadevarajan07@gmail.com</p>
 
-            <!-- Rear Upright & Planet Carrier — design/FEA showcase (2027 drivetrain) -->
-            <div class="upright-showcase">
-              <div class="showcase-label"><span class="year-tag">2027 Drivetrain</span>Rear Upright &amp; Planet Carrier — Design &amp; FEA</div>
+  <dialog class="lightbox" aria-labelledby="lightbox-caption"><div class="lightbox-inner"><img hidden alt=""><video hidden controls playsinline></video><p class="lightbox-cap" id="lightbox-caption"></p></div><button class="lightbox-close" type="button" aria-label="Close media viewer">×</button></dialog>
+  <script>
+  (() => {
+    'use strict';
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    /* ---------- cursor halo ----------
+       The halo is the ONLY element that follows the cursor. It is a fixed,
+       pointer-events:none decoration, translated on the compositor once per
+       frame. Buttons and other controls are deliberately NOT coupled to the
+       pointer: a control that drifts under the cursor is a control the user
+       has to chase, so the four actions — View Portfolio PDF, View Resume,
+       Email and LinkedIn — stay in their layout position
+       and express interaction through colour, glow and press instead. */
+    const state = { x:-100, y:-100, hot:false, dirty:false, paused:document.hidden };
+    const halo = document.querySelector('.halo');
+    let raf = 0;
+    const frame = () => { raf = 0; if (state.paused || !state.dirty) return; state.dirty=false; halo.style.transform=`translate3d(${state.x}px,${state.y}px,0)`; halo.dataset.visible='true'; halo.dataset.hot=String(state.hot); };
+    const schedule = () => { if (!raf && !state.paused) raf=requestAnimationFrame(frame); };
+    if (finePointer && !reduced) { addEventListener('pointermove', e => { state.x=e.clientX; state.y=e.clientY; state.dirty=true; schedule(); }, {passive:true}); document.addEventListener('pointerover', e => { state.hot=Boolean(e.target.closest('a,button,model-viewer')); state.dirty=true; schedule(); }, {passive:true}); document.addEventListener('pointerout', e => { if (!e.relatedTarget) halo.dataset.visible='false'; }, {passive:true}); }
+    document.addEventListener('visibilitychange', () => { state.paused=document.hidden; document.body.dataset.hidden=String(document.hidden); if (!state.paused) schedule(); });
 
-              <div class="showcase-grid showcase-grid-dual">
-                <div class="showcase-model frame">
-                  <model-viewer
-                    src="assets/models/DT27_Rear_Upright.gltf"
-                    alt="3D model of the rear wheel upright"
-                    camera-controls
-                    auto-rotate
-                    auto-rotate-delay="1200"
-                    rotation-per-second="18deg"
-                    interaction-prompt="none"
-                    shadow-intensity="0.7"
-                    exposure="1"
-                    environment-image="neutral"
-                    camera-orbit="35deg 75deg 105%"
-                    style="width:100%; height:100%;">
-                  </model-viewer>
-                  <div class="showcase-cap">Rear upright — interactive 3D model (drag to rotate)</div>
-                </div>
-                <div class="showcase-model showcase-model-tall frame">
-                  <model-viewer
-                    src="assets/models/Drivetrain27_Asy.gltf"
-                    alt="3D model of the full rear drivetrain assembly"
-                    orientation="90deg 0deg 0deg"
-                    camera-controls
-                    auto-rotate
-                    auto-rotate-delay="1200"
-                    rotation-per-second="18deg"
-                    interaction-prompt="none"
-                    shadow-intensity="0.7"
-                    exposure="1"
-                    environment-image="neutral"
-                    camera-orbit="-20deg 78deg auto"
-                    style="width:100%; height:100%;">
-                  </model-viewer>
-                  <div class="showcase-cap">Full rear drivetrain assembly — interactive 3D model</div>
-                </div>
-              </div>
+    /* ---------- cursor-relative frame tilt (media + 3D frames only) ----------
+       Ported from Website V2's feel, not its architecture. Per frame:
+         · the rect is measured ONCE on pointerenter, not per move —
+           getBoundingClientRect() forces synchronous layout, and pointermove
+           fires far more often than the display can paint;
+         · moves only stash the event and request a frame, so N events between
+           two paints collapse into one write (coalesced, never per-event work);
+         · the write is two custom properties consumed by a compositor-only
+           `transform`, scoped to the hovered element — nothing else in the
+           document is read or invalidated;
+         · listeners are attached per frame and live for the page's lifetime,
+           so there is nothing to leak and nothing to tear down.
+       Touch and reduced-motion never reach this code at all. */
+    if (finePointer && !reduced) {
+      const TILT_X = 5, TILT_Y = 7;   // degrees at the frame's edge — restrained on purpose
+      // Media figures and 3D frames only. The hero rail is deliberately
+      // excluded: its track is already translating, so a rect cached on
+      // enter would be stale by the next frame.
+      document.querySelectorAll('.viewer, .media').forEach(el => {
+        el.classList.add('tilt');
+        let rect = null, pendingEvent = null, tiltRaf = 0;
+        const paint = () => {
+          tiltRaf = 0;
+          if (!rect || !pendingEvent) return;
+          const px = (pendingEvent.clientX - rect.left) / rect.width;
+          const py = (pendingEvent.clientY - rect.top) / rect.height;
+          el.style.setProperty('--rx', `${((py - .5) * -TILT_X).toFixed(2)}deg`);
+          el.style.setProperty('--ry', `${((px - .5) * TILT_Y).toFixed(2)}deg`);
+        };
+        el.addEventListener('pointerenter', e => {
+          if (e.pointerType !== 'mouse') return;
+          rect = el.getBoundingClientRect();
+          el.dataset.active = 'true';
+        }, {passive:true});
+        el.addEventListener('pointermove', e => {
+          if (e.pointerType !== 'mouse' || !rect) return;
+          pendingEvent = e;
+          if (!tiltRaf) tiltRaf = requestAnimationFrame(paint);
+        }, {passive:true});
+        el.addEventListener('pointerleave', () => {
+          rect = null; pendingEvent = null;
+          if (tiltRaf) { cancelAnimationFrame(tiltRaf); tiltRaf = 0; }
+          // drop data-active first: the longer transition carries it home
+          el.dataset.active = 'false';
+          el.style.setProperty('--rx', '0deg');
+          el.style.setProperty('--ry', '0deg');
+        }, {passive:true});
+      });
+    }
 
-              <div class="showcase-img frame showcase-img-wide" data-project="upright" data-idx="4">
-                <img src="assets/images/upright-fea.jpg" alt="Static structural FEA on the rear upright and hub assembly">
-                <div class="showcase-cap">Static FEA — rear upright / hub assembly</div>
-              </div>
-            </div>
+    /* ---------- View Portfolio PDF ----------
+       The print stylesheet re-lays the real page content as an A4 document,
+       so the browser's own print-to-PDF produces the portfolio itself rather
+       than a capture of the web view. No dependency, no second source of
+       truth to drift out of sync with the page. */
+    document.querySelectorAll('[data-print]').forEach(btn => btn.addEventListener('click', () => window.print()));
+    const reveal = new IntersectionObserver(entries => entries.forEach(entry => { if(entry.isIntersecting || reduced){entry.target.classList.add('is-revealed'); reveal.unobserve(entry.target);} }), {rootMargin:'0px 0px -8%'}); document.querySelectorAll('[data-reveal]').forEach(el => reveal.observe(el));
+    const navLinks=[...document.querySelectorAll('.nav-link')], sections=navLinks.map(a=>document.querySelector(a.hash)).filter(Boolean); const navObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{ if(entry.isIntersecting) navLinks.forEach(a=>a.setAttribute('aria-current',String(a.hash===`#${entry.target.id}`)));}),{rootMargin:'-42% 0px -52%'}); sections.forEach(s=>navObserver.observe(s));
+    const nav=document.querySelector('.nav'); addEventListener('scroll',()=>nav.dataset.stuck=String(scrollY>16),{passive:true});
+    const pauseObserver=new IntersectionObserver(entries=>entries.forEach(e=>e.target.dataset.paused=String(!e.isIntersecting)),{threshold:.05}); document.querySelectorAll('[data-pausable]').forEach(el=>pauseObserver.observe(el));
 
-            <!-- Wheel upright manufacturing (2026 drivetrain, prior upright design) -->
-            <div class="upright-showcase">
-              <div class="showcase-label"><span class="year-tag year-tag-alt">2026 Drivetrain</span>Wheel Upright Manufacturing — Prior Upright Design</div>
-              <p class="showcase-note">5-axis CNC toolpathing and machining shown below were performed on the previous (2026) upright design, ahead of the 2027 redesign shown above.</p>
-
-              <div class="showcase-strip">
-                <div class="showcase-thumb" data-project="upright" data-idx="5"><img src="assets/images/upright-cam-01-roughing.jpg" alt="5-axis roughing toolpaths"><span>5-Axis Roughing</span></div>
-                <div class="showcase-thumb" data-project="upright" data-idx="7"><img src="assets/images/upright-cam-03-finishing.jpg" alt="5-axis finishing toolpaths"><span>5-Axis Finishing</span></div>
-                <div class="showcase-thumb" data-project="upright" data-idx="8"><img src="assets/images/upright-5axis-machined.jpg" alt="Upright after 5-axis machining operation"><span>After 5-Axis Op</span></div>
-                <div class="showcase-thumb" data-project="upright" data-idx="9"><img src="assets/images/upright-3axis-machined.jpg" alt="Upright after final 3-axis machining operation"><span>After Final 3-Axis Op</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ PROJECTS ============ -->
-  <section id="projects">
-    <div class="wrap" style="padding-top:80px;">
-      <div class="section-head" data-reveal>
-        <h2 class="section-title">Projects</h2>
-      </div>
-    </div>
-
-    <!-- Project: Custom Electric Bike Design -->
-    <div class="proj-section" data-reveal>
-      <div class="wrap proj-row">
-        <div class="proj-col-head">
-          <div class="proj-index">01</div>
-          <h3>Custom Electric Bike Design</h3>
-          <div class="proj-date">October 2025 — Present</div>
-          <ul class="proj-desc">
-            <li>Built a fully parametric frame assembly in Siemens NX keyed to off-the-shelf tubing dimensions, so wheelbase, head angle, chainstay angle, and dropout geometry all update from a single set of driving inputs.</li>
-            <li>Ran Ansys FEA on each candidate frame, swapping stock tube diameters and wall thicknesses through the parametric model to find the lightest combination that holds a 2.0 minimum safety factor under static load.</li>
-            <li>Ran cost-versus-performance trade studies on motors, sprockets, and tubing alongside the FEA, converging on the cheapest catalog set that still meets the target safety factor and ride geometry, 9% under the first build cost.</li>
-          </ul>
-          <div class="proj-tools">Siemens NX · Ansys FEA</div>
-        </div>
-        <div class="proj-col-media">
-          <div class="showcase-model frame">
-            <model-viewer
-              src="assets/models/ebike-top-level-assembly.gltf"
-              alt="3D model of the custom electric bike top-level assembly"
-              orientation="90deg -90deg 0deg"
-              camera-controls
-              auto-rotate
-              auto-rotate-delay="1200"
-              rotation-per-second="18deg"
-              interaction-prompt="none"
-              shadow-intensity="0.7"
-              exposure="1"
-              environment-image="neutral"
-              camera-orbit="180deg 90deg auto"
-              style="width:100%; height:100%;">
-            </model-viewer>
-            <div class="showcase-cap">Top-level frame assembly — interactive 3D model (drag to rotate)</div>
-          </div>
-          <div class="proj-img-grid">
-            <div class="proj-img frame" data-project="bike" data-idx="0"><img src="assets/images/bike-02-fea-prepped.jpg" alt="Frame prepared for FEA meshing in Ansys"></div>
-            <div class="proj-img frame" data-project="bike" data-idx="1"><img src="assets/images/bike-03-fea-stress.jpg" alt="Von Mises stress results from Ansys FEA"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Project: Autonomous Supply Robot -->
-    <div class="proj-section" data-reveal>
-      <div class="wrap proj-row proj-row-text">
-        <div class="proj-col-head">
-          <div class="proj-index">02</div>
-          <h3>Autonomous Supply Robot</h3>
-          <div class="proj-date">March 2026 — April 2026</div>
-          <ul class="proj-desc">
-            <li>Navigated a walled maze on ultrasonic and IMU sensing, adding infrared to dodge heat and magnetic hazards.</li>
-            <li>Designed a gripping mechanism that holds cargo in transit and releases it at the target destination.</li>
-            <li>Logged the path traveled by IMU dead-reckoning, recording hazard and delivery coordinates into a matrix.</li>
-          </ul>
-          <div class="proj-tools">Raspberry Pi Build HAT · LEGO Technic · Python · Ultrasonic/IMU/Infrared Sensors</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Project: Analog Audio Equalizer -->
-    <div class="proj-section" data-reveal>
-      <div class="wrap proj-row">
-        <div class="proj-col-head">
-          <div class="proj-index">03</div>
-          <h3>Analog Audio Equalizer</h3>
-          <div class="proj-date">April 2026</div>
-          <ul class="proj-desc">
-            <li>Designed schematic for an audio equalizer and amplifier to recombine adjusted treble, mid, and bass frequencies for customizable output.</li>
-            <li>Troubleshot and validated breadboard circuit assembly via frequency generator, oscilloscope, and multimeter.</li>
-          </ul>
-          <div class="proj-tools">LTSpice · KiCad</div>
-        </div>
-        <div class="proj-col-media">
-          <div class="proj-img proj-img-contain frame" data-project="audioeq" data-idx="0"><img src="assets/images/audio-eq-schematic.png" alt="LTspice schematic of the treble, mid, bass, and master control equalizer stages"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Project: Complex Surface Topography -->
-    <div class="proj-section" data-reveal>
-      <div class="wrap">
-        <div class="proj-row proj-row-top">
-          <div class="proj-col-head">
-            <div class="proj-index">04</div>
-            <h3>Complex Surface Topography</h3>
-            <div class="proj-date">December 2025 — January 2026</div>
-            <ul class="proj-desc">
-              <li>Produced a 2D grayscale gradient heightmap from a source portrait photo.</li>
-              <li>Built 3D mesh geometry from the heightmap in Fusion 360, keeping the organic topology machinable.</li>
-              <li>Cut machining time 60% by reworking CAM toolpaths, holding surface detail with almost no hand rework.</li>
-            </ul>
-            <div class="proj-tools">Fusion 360 · CAM · CNC Router</div>
-          </div>
-        </div>
-
-        <div class="showcase-model frame topo-model">
-          <model-viewer
-            src="assets/models/BabaWoodSurface.gltf"
-            alt="3D model of the carved wood relief surface"
-            orientation="0deg -90deg 0deg"
-            camera-controls
-            auto-rotate
-            auto-rotate-delay="1200"
-            rotation-per-second="18deg"
-            interaction-prompt="none"
-            shadow-intensity="0.7"
-            exposure="1"
-            environment-image="neutral"
-            camera-orbit="90deg 90deg auto"
-            style="width:100%; height:100%;">
-          </model-viewer>
-          <div class="showcase-cap">Relief surface — interactive 3D model (drag to rotate)</div>
-        </div>
-
-        <div class="story-strip frame" data-reveal>
-          <div class="story-step" data-project="topo" data-idx="0">
-            <div class="thumb"><img src="assets/images/topo-01-source.jpg" alt="Source portrait photograph used to generate the heightmap"></div>
-            <div class="cap"><div class="st-num">01</div><div class="st-title">Source Image</div></div>
-          </div>
-          <div class="story-step" data-project="topo" data-idx="1">
-            <div class="thumb"><img src="assets/images/topo-02-heightmap.jpg" alt="Grayscale gradient heightmap generated from the source photo"></div>
-            <div class="cap"><div class="st-num">02</div><div class="st-title">Grayscale Heightmap</div></div>
-          </div>
-          <div class="story-step" data-project="topo" data-idx="2">
-            <div class="thumb"><img src="assets/images/topo-02b-mesh.jpg" alt="3D mesh converted from the heightmap in Fusion 360"></div>
-            <div class="cap"><div class="st-num">03</div><div class="st-title">3D Mesh Conversion</div></div>
-          </div>
-          <div class="story-step" data-project="topo" data-idx="3">
-            <div class="thumb"><img src="assets/images/topo-03-mesh-toolpath.jpg" alt="CNC machining toolpaths generated over the mesh"></div>
-            <div class="cap"><div class="st-num">04</div><div class="st-title">CAM Toolpaths</div></div>
-          </div>
-          <div class="story-step" data-project="topo" data-idx="4">
-            <div class="thumb"><img src="assets/images/topo-05-stockprep.jpg" alt="Hardwood stock clamped and prepared for machining"></div>
-            <div class="cap"><div class="st-num">05</div><div class="st-title">Stock Preparation</div></div>
-          </div>
-          <div class="story-step" data-project="topo" data-idx="5">
-            <div class="thumb"><img src="assets/images/topo-06-router.jpg" alt="CNC router carving the relief into the hardwood stock"></div>
-            <div class="cap"><div class="st-num">06</div><div class="st-title">CNC Router Operation</div></div>
-          </div>
-          <div class="story-step" data-project="topo" data-idx="6">
-            <div class="thumb"><img src="assets/images/topo-07-final.jpg" alt="Finished carved relief portrait in hardwood"></div>
-            <div class="cap"><div class="st-num">07</div><div class="st-title">Final Piece</div></div>
-          </div>
-        </div>
-
-        <div class="video-strip frame" data-reveal>
-          <div class="video-item" data-video-idx="0">
-            <div class="vid-wrap">
-              <video class="video-preview" muted loop playsinline preload="metadata" src="assets/video/topo-video-1-preview.mp4"></video>
-              <span class="play-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <div class="cap"><div class="st-num">01</div><div class="st-title">Machining Pass — Video 1</div></div>
-          </div>
-          <div class="video-item" data-video-idx="1">
-            <div class="vid-wrap">
-              <video class="video-preview" muted loop playsinline preload="metadata" src="assets/video/topo-video-2-preview.mp4"></video>
-              <span class="play-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <div class="cap"><div class="st-num">02</div><div class="st-title">Machining Pass — Video 2</div></div>
-          </div>
-          <div class="video-item" data-video-idx="2">
-            <div class="vid-wrap">
-              <video class="video-preview" muted loop playsinline preload="metadata" src="assets/video/topo-video-3-preview.mp4"></video>
-              <span class="play-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            </div>
-            <div class="cap"><div class="st-num">03</div><div class="st-title">Machining Pass — Video 3</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Project: Mars Rover -->
-    <div class="proj-section" data-reveal>
-      <div class="wrap proj-row proj-row-text">
-        <div class="proj-col-head">
-          <div class="proj-index">05</div>
-          <h3>Mars Rover</h3>
-          <div class="proj-date">October 2025 — December 2025</div>
-          <ul class="proj-desc">
-            <li>Built a compact drivetrain with a custom worm-gear cargo system to carry 500 g loads up 35° inclines.</li>
-            <li>Wrote a Python control loop that trims motor PWM from live IMU feedback to hold the line over rough terrain.</li>
-          </ul>
-          <div class="proj-tools">Raspberry Pi Build HAT · LEGO Technic · Python · IMU</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Project: Ethanol Production Process Optimization -->
-    <div class="proj-section" data-reveal>
-      <div class="wrap">
-        <div class="proj-row proj-row-top">
-          <div class="proj-col-head">
-            <div class="proj-index">06</div>
-            <h3>Ethanol Production Process Optimization</h3>
-            <div class="proj-date">October 2025</div>
-            <ul class="proj-desc">
-              <li>Built a low-fidelity Python model of an ethanol plant, parameterized by machinery, piping, and valve specs.</li>
-              <li>Swept every valid component combination to find the plant configuration with the lowest cost per unit energy.</li>
-            </ul>
-            <div class="proj-tools">Python</div>
-          </div>
-        </div>
-
-        <div class="proj-img-grid" data-reveal-group>
-          <div class="proj-img proj-img-contain proj-img-tall frame" data-project="ethanol" data-idx="0">
-            <img src="assets/images/ethanol-01-stages.png" loading="lazy" alt="Python function computing ethanol, sugar, fiber, water, and waste mass flows through each of the four process stages">
-          </div>
-          <div class="proj-img proj-img-contain proj-img-tall frame" data-project="ethanol" data-idx="1">
-            <img src="assets/images/ethanol-02-kinetic.png" loading="lazy" alt="Python kinetic function used to model conversion rates through the plant">
-          </div>
-          <div class="proj-img proj-img-contain proj-img-tall frame" data-project="ethanol" data-idx="2">
-            <img src="assets/images/ethanol-03-matrices.png" loading="lazy" alt="Component parameter matrices for pipe, pump, valve, fermentation, filtration, distillation, and dehydration stages">
-          </div>
-          <div class="proj-img proj-img-contain proj-img-tall frame" data-project="ethanol" data-idx="3">
-            <img src="assets/images/ethanol-04-sweep.png" loading="lazy" alt="Sweep routine exhaustively evaluating component combinations to minimize cost and energy">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Project: Smog Tower Feasibility Study -->
-    <div class="proj-section" data-reveal>
-      <div class="wrap proj-row proj-row-text">
-        <div class="proj-col-head">
-          <div class="proj-index">07</div>
-          <h3>Smog Tower Feasibility Study</h3>
-          <div class="proj-date">March 2025</div>
-          <ul class="proj-desc">
-            <li>Researched Studio Roosegaarde's Smog Free Tower concept and evaluated its feasibility for large-scale deployment to reduce PM2.5/PM10 air pollution in Hong Kong within realistic budget and practicality constraints.</li>
-            <li>Built a low-fidelity Python simulation modeling individual particle motion to determine each tower's effective cleaning radius — the area where PM2.5/PM10 concentrations could be held at or below global health standards.</li>
-            <li>Combined the simulation results with a scale-deployment feasibility analysis to conclude that city-wide deployment wasn't practical — a data-driven recommendation rather than a subjective call.</li>
-          </ul>
-          <div class="proj-tools">Python</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ SKILLS ============ -->
-  <section class="section" id="skills">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <h2 class="section-title">Skills</h2>
-      </div>
-
-      <div class="skills-grid frame" data-reveal>
-        <div class="skill-col">
-          <h3>CAD/CAM/PLM</h3>
-          <ul>
-            <li>CATIA V5</li>
-            <li>Siemens NX</li>
-            <li>Fusion 360</li>
-            <li>3DEXPERIENCE</li>
-            <li>Teamcenter</li>
-            <li>SAP ERP</li>
-          </ul>
-        </div>
-        <div class="skill-col">
-          <h3>Manufacturing</h3>
-          <ul>
-            <li>3- &amp; 5-Axis CNC Machining</li>
-            <li>Manual Machining</li>
-            <li>Additive Manufacturing</li>
-            <li>Fixture Design</li>
-            <li>Soldering</li>
-          </ul>
-        </div>
-        <div class="skill-col">
-          <h3>Tolerancing &amp; Analysis</h3>
-          <ul>
-            <li>GD&amp;T (ASME Y14.5)</li>
-            <li>Ansys FEA</li>
-            <li>Dive CFD</li>
-          </ul>
-        </div>
-        <div class="skill-col">
-          <h3>Modeling</h3>
-          <ul>
-            <li>Python trade studies</li>
-            <li>Combinatorial optimization</li>
-            <li>Cost &amp; energy modeling</li>
-          </ul>
-        </div>
-        <div class="skill-col">
-          <h3>Controls / Electronics</h3>
-          <ul>
-            <li>Python</li>
-            <li>MATLAB</li>
-            <li>Arduino</li>
-            <li>LTSpice</li>
-            <li>KiCad</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CONTACT ============ -->
-  <section class="cta-section" id="contact">
-    <div class="wrap cta-inner">
-      <div class="cta-eyebrow" data-reveal>Contact</div>
-      <h2 class="cta-title" data-reveal>SATHYA DEVARAJAN</h2>
-      <div class="cta-links" data-reveal>
-        <a class="btn btn-solid" href="mailto:sathyadevarajan07@gmail.com">Email
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-        </a>
-        <a class="btn" href="https://linkedin.com/in/sathya-devarajan" target="_blank" rel="noopener">LinkedIn
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-        </a>
-      </div>
-      <div class="cta-contact-row" data-reveal>
-        <a href="tel:+16308880715">630-888-0715</a>
-        <a href="mailto:sathyadevarajan07@gmail.com">sathyadevarajan07@gmail.com</a>
-        <span>West Lafayette, IN · U.S. Citizen</span>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="wrap">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#top" class="logo">
-          <svg class="logo-mark" viewBox="0 0 26 26" fill="none">
-            <rect x="1" y="1" width="24" height="24" stroke-width="1"/>
-            <circle cx="13" cy="13" r="5" stroke-width="1"/>
-            <path d="M13 1v6M13 19v6M1 13h6M19 13h6" stroke-width="1"/>
-          </svg>
-          SATHYA DEVARAJAN
-        </a>
-        <p>Purdue University — B.S. Mechanical Engineering, Expected May 2028</p>
-      </div>
-      <div>
-        <h4>Sitemap</h4>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="mailto:sathyadevarajan07@gmail.com">Email</a></li>
-          <li><a href="https://linkedin.com/in/sathya-devarajan" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="tel:+16308880715">630-888-0715</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Based at</h4>
-        <ul>
-          <li><a href="#top">Purdue University</a></li>
-          <li><a href="#top">West Lafayette, IN</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 SATHYA DEVARAJAN</span>
-    </div>
-  </div>
-</footer>
-
-<!-- ============ LIGHTBOX ============ -->
-<div id="lightbox">
-  <button class="lb-close" id="lb-close" aria-label="Close">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M6 6l12 12M18 6L6 18"/></svg>
-  </button>
-  <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M15 18l-6-6 6-6"/></svg>
-  </button>
-  <div class="lb-stage">
-    <img id="lb-img" src="" alt="">
-    <div class="lb-caption"><b id="lb-title"></b> <span id="lb-desc"></span></div>
-  </div>
-  <button class="lb-nav lb-next" id="lb-next" aria-label="Next">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M9 18l6-6-6-6"/></svg>
-  </button>
-  <div class="lb-count" id="lb-count"></div>
-</div>
-
-<!-- ============ VIDEO LIGHTBOX ============ -->
-<div id="video-lightbox">
-  <button class="lb-close" id="vlb-close" aria-label="Close">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M6 6l12 12M18 6L6 18"/></svg>
-  </button>
-  <button class="lb-nav lb-prev" id="vlb-prev" aria-label="Previous">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M15 18l-6-6 6-6"/></svg>
-  </button>
-  <div class="lb-stage">
-    <video id="vlb-video" controls playsinline></video>
-    <div class="lb-caption"><b id="vlb-title"></b></div>
-  </div>
-  <button class="lb-nav lb-next" id="vlb-next" aria-label="Next">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M9 18l6-6-6-6"/></svg>
-  </button>
-  <div class="lb-count" id="vlb-count"></div>
-</div>
-
-<!-- ============ RESUME VIEWER ============ -->
-<div id="resume-modal" hidden role="dialog" aria-modal="true" aria-labelledby="resume-modal-title">
-  <div class="rm-backdrop" data-rm-close></div>
-  <div class="rm-panel" role="document">
-    <div class="rm-bar">
-      <h2 id="resume-modal-title">Resume</h2>
-      <div class="rm-actions">
-        <a class="btn" id="rm-newtab" href="assets/Resume.pdf" target="_blank" rel="noopener">Open in new tab
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-        </a>
-        <a class="btn btn-solid" id="rm-download" href="assets/Resume.pdf" download="Sathya-Devarajan-Resume.pdf">Download PDF
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12M6 12l6 6 6-6M4 20h16"/></svg>
-        </a>
-        <button class="rm-close" id="rm-close" type="button" aria-label="Close resume viewer" data-rm-close>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
-      </div>
-    </div>
-    <div class="rm-stage" id="rm-stage">
-      <!-- iframe injected on first open so the PDF is not fetched on page load -->
-    </div>
-  </div>
-</div>
-
-<script src="script.js"></script>
+    /* All four glTF files use KHR_draco_mesh_compression, and model-viewer's
+       default decoder path is https://www.gstatic.com/draco/... — so with that
+       CDN blocked or the machine offline, every 3D viewer would fail to load
+       its geometry. The decoder is vendored into assets/js/draco/ and pointed
+       at here, which leaves the page with no third-party runtime requests. */
+    /* Pin the decoder path the instant the class registers — whenDefined
+       resolves inside customElements.define(), which is earlier than the
+       script's own load event and earlier than the first model is parsed. */
+    /* model-viewer reads `self.ModelViewerElement.dracoDecoderLocation` once,
+       while its module is evaluating, and otherwise falls back to its gstatic
+       default. It must therefore be set BEFORE the module is appended — the
+       static property on the element class is read too late to matter. */
+    self.ModelViewerElement = Object.assign(self.ModelViewerElement || {}, {
+      dracoDecoderLocation: new URL('assets/js/draco/', location.href).href
+    });
+    let viewerScript; const loadViewer=()=>viewerScript??=new Promise((resolve,reject)=>{const s=document.createElement('script');s.type='module';s.src='assets/js/model-viewer.min.js';s.onload=()=>customElements.whenDefined('model-viewer').then(resolve);s.onerror=reject;document.head.append(s);});
+    const viewerObserver=new IntersectionObserver(entries=>entries.forEach(async entry=>{if(!entry.isIntersecting)return; viewerObserver.unobserve(entry.target); const shell=entry.target; try{await loadViewer();const m=document.createElement('model-viewer');m.src=shell.dataset.model;m.alt=shell.dataset.alt;m.setAttribute('camera-controls','');m.setAttribute('interaction-prompt','none');m.setAttribute('shadow-intensity','0.7');m.setAttribute('exposure','1');m.setAttribute('environment-image','neutral');m.setAttribute('camera-orbit',shell.dataset.orbit);if(shell.dataset.orientation)m.setAttribute('orientation',shell.dataset.orientation);if(!reduced){m.setAttribute('auto-rotate','');m.setAttribute('auto-rotate-delay','1200');m.setAttribute('rotation-per-second','18deg');}m.addEventListener('load',()=>shell.dataset.state='ready',{once:true});m.addEventListener('error',()=>shell.dataset.state='error',{once:true});shell.querySelector('.viewer-stage').append(m);}catch{shell.dataset.state='error';shell.querySelector('.viewer-fallback').textContent='3D model unavailable';}}),{rootMargin:'240px 0px'}); document.querySelectorAll('.viewer').forEach(el=>viewerObserver.observe(el));
+    const previewObserver=new IntersectionObserver(entries=>entries.forEach(e=>{const v=e.target;if(e.isIntersecting){if(!v.src)v.src=v.dataset.preview;if(!reduced)v.play().catch(()=>{});}else v.pause();}),{rootMargin:'120px 0px'}); document.querySelectorAll('video[data-preview]').forEach(v=>previewObserver.observe(v));
+    const dialog=document.querySelector('.lightbox'), dialogImg=dialog.querySelector('img'), dialogVideo=dialog.querySelector('video'), caption=dialog.querySelector('.lightbox-cap'); const close=()=>{dialogVideo.pause();dialogVideo.removeAttribute('src');dialogImg.hidden=true;dialogVideo.hidden=true;dialog.close();}; document.querySelector('.lightbox-close').addEventListener('click',close); dialog.addEventListener('click',e=>{if(e.target===dialog)close();}); document.addEventListener('keydown',e=>{if(e.key==='Escape'&&dialog.open)close();});
+    document.querySelectorAll('[data-image]').forEach(btn=>btn.addEventListener('click',()=>{dialogVideo.hidden=true;dialogImg.src=btn.dataset.image;dialogImg.alt=btn.dataset.alt;dialogImg.hidden=false;caption.textContent=btn.dataset.caption;dialog.showModal();})); document.querySelectorAll('[data-video]').forEach(btn=>btn.addEventListener('click',()=>{dialogImg.hidden=true;dialogVideo.src=btn.dataset.video;dialogVideo.hidden=false;caption.textContent=btn.dataset.caption;dialog.showModal();dialogVideo.play().catch(()=>{});}));
+  })();
+  </script>
 </body>
 </html>
